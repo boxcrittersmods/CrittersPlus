@@ -34,7 +34,7 @@ window.addEventListener('load', function() {
         world.sendMessage(joke.j); // Send the first part of the joke
         delay(function(){
             world.sendMessage(joke.p); // Send the punchline
-        }, 4000 ); // end delay
+        }, 5000 ); // end delay
     }
 
     var jokeBtn = document.querySelector ("#jokebtn");
