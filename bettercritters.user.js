@@ -14,7 +14,6 @@ var jokes = [
     {"j":"What do you call a hamster with no legs?","p":"A furball!"},
     {"j":"What do you call a hamster that can't run in a wheel?","p":"Hamateur"},
     {"j":"Why was the hamster upset with his job?","p":"It didn't pay enough celery"},
-    {"j":"What do you call a hamster that can't run in a wheel?","p":"Hamateur"},
     {"j":"What do you call a hamster with three legs?","p":"Hamputee"}
 ]
 
