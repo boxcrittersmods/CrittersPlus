@@ -27,6 +27,7 @@ var delay = ( function() {
 })();
 
 window.addEventListener('load', function() {
+    
     var chatBar = document.getElementsByClassName("input-group")[0];
     var jokeBtnHTML = `<span class="input-group-btn"><button id="jokebtn" class="btn btn-success chat-btn">Joke</button></span>`;
     chatBar.insertAdjacentHTML('beforeend', jokeBtnHTML);
@@ -43,6 +44,7 @@ window.addEventListener('load', function() {
     if (jokeBtn) {
         jokeBtn.addEventListener ("click", sendJoke, false);
     }
+    
 }, false);
 
 
