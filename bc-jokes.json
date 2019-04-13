@@ -1,5 +1,5 @@
-{
-"Test joke 1":"test answer!",
-"another joke":"another answer!",
-"A final joke":"yet another answer!"
-}
+[
+    {"j":"This is the joke!","p":"This is the punchline!"},
+    {"j":"This is the joke2!","p":"This is the punchline2!"},
+    {"j":"This is the joke3!","p":"This is the punchline3!"},
+]
