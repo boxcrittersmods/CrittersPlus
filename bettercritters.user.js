@@ -17,6 +17,8 @@ var jokes = [
     {"j":"What do you call a hamster with three legs?","p":"Hamputee"}
 ]
 
+// Code for delay function
+
 var delay = ( function() {
     var timer = 0;
     return function(callback, ms) {
@@ -25,11 +27,15 @@ var delay = ( function() {
     };
 })();
 
+// Runs on page load
+
 window.addEventListener('load', function() {
     
     var chatBar = document.getElementsByClassName("input-group")[0];
     var jokeBtnHTML = `<span class="input-group-btn"><button id="jokebtn" class="btn btn-success chat-btn">Joke</button></span>`;
+    var typewriterBtnHTML = `<span class="input-group-btn"><button id="typewriterbtn" class="btn btn-warning chat-btn">Typewriter</button></span>`;
     chatBar.insertAdjacentHTML('beforeend', jokeBtnHTML);
+    chatBar.insertAdjacentHTML('beforeend', typewriterBtnHTML);
 
     function sendJoke() {
         var joke = jokes[(Math.floor(Math.random() * jokes.length))]; // Retrieve random joke from variable
