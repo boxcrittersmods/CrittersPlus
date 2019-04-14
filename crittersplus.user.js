@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://tampermonkey.net/
-// @version      1.1.23
+// @version      1.1.3
 // @description  try to take over the world!
 // @author       slaggo, codejk
 // @match        http*://boxcritters.com/play/*
@@ -36,9 +36,11 @@ window.addEventListener('load', function() {
     var jokeBtnHTML = `<span class="input-group-btn"><button id="jokebtn" class="btn btn-success">Joke</button></span>`;
     var clapBtnHTML = `<span class="input-group-btn"><button id="clapbtn" class="btn btn-warning">Clap</button></span>`;
     var balonoffBtnHTML = `<span class="input-group-btn"><button id="balonoffbtn" class="btn btn-info">Chat Balloons On/Off</button></span>`;
+    var nametagsonoffBtnHTML = `<span class="input-group-btn"><button id="nametagsonoffbtn" class="btn btn-info">Name Tags On/Off</button></span>`;
     chatBar.insertAdjacentHTML('beforeend', jokeBtnHTML);
     chatBar.insertAdjacentHTML('beforeend', clapBtnHTML);
     chatBar.insertAdjacentHTML('afterend', balonoffBtnHTML);
+    chatBar.insertAdjacentHTML('afterend', nametagsonoffBtnHTML);
 
     function sendJoke() {
         document.getElementById("inputMessage").value="";
@@ -62,6 +64,11 @@ window.addEventListener('load', function() {
         document.getElementById("inputMessage").value="";
         world.sendMessage("/balloons"); // Turn chat balloons off
     }
+    
+    function nametagsonoff() {
+        document.getElementById("inputMessage").value="";
+        world.sendMessage("/nicknames"); // Turn name tags on/off
+    }
 
     var jokeBtn = document.querySelector ("#jokebtn");
     if (jokeBtn) {
@@ -75,6 +82,11 @@ window.addEventListener('load', function() {
     var balonoffBtn = document.querySelector ("#balonoffbtn");
     if (balonoffBtn) {
         balonoffBtn.addEventListener ("click", balonoff, false);
+    }
+    
+    var nametagsonoffBtn = document.querySelector ("#nametagsonoffbtn");
+    if (nametagsonoffBtn) {
+        nametagsonoffBtn.addEventListener ("click", nametagsonoff, false);
     }
 }, false);
 
