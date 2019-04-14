@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://tampermonkey.net/
-// @version      1.1.22
+// @version      1.1.23
 // @description  try to take over the world!
 // @author       slaggo, codejk
 // @match        http*://boxcritters.com/play/*
-// @icon         https://github.com/slaggo/CrittersPlus/blob/master/icon.png
+// @icon         https://raw.githubusercontent.com/slaggo/CrittersPlus/master/icon.png
 // @grant        none
 // ==/UserScript==
 
