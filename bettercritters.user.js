@@ -30,7 +30,7 @@ var delay = ( function() {
 // Runs on page load
 
 window.addEventListener('load', function() {
-    
+
     var chatBar = document.getElementsByClassName("input-group")[0];
     var jokeBtnHTML = `<span class="input-group-btn"><button id="jokebtn" class="btn btn-success">Joke</button></span>`;
     var typewriterBtnHTML = `<span class="input-group-btn"><button id="typewriterbtn" class="btn btn-warning">Typewriter</button></span>`;
@@ -50,7 +50,7 @@ window.addEventListener('load', function() {
     if (jokeBtn) {
         jokeBtn.addEventListener ("click", sendJoke, false);
     }
-    
+
 }, false);
 
 
