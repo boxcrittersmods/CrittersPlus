@@ -5,6 +5,7 @@
 // @description  try to take over the world!
 // @author       slaggo, codejk
 // @match        http*://boxcritters.com/play/*
+// @icon         https://github.com/slaggo/CrittersPlus/blob/master/icon.png
 // @grant        none
 // ==/UserScript==
 
