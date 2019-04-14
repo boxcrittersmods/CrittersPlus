@@ -37,10 +37,12 @@ window.addEventListener('load', function() {
     var clapBtnHTML = `<span class="input-group-btn"><button id="clapbtn" class="btn btn-warning">Clap</button></span>`;
     var balloonoffBtnHTML = `<span class="input-group-btn"><button id="balloonoffbtn" class="btn btn-info">Chat Balloons On/Off</button></span>`;
     var nametagsonoffBtnHTML = `<span class="input-group-btn"><button id="nametagsonoffbtn" class="btn btn-info">Name Tags On/Off</button></span>`;
+    var darkmodeHTML = `<input class="form-check-input" type="checkbox" value="" id="darkmode"><label class="form-check-label" for="darkmode">Dark Mode</label>`;
     chatBar.insertAdjacentHTML('beforeend', jokeBtnHTML);
     chatBar.insertAdjacentHTML('beforeend', clapBtnHTML);
     chatBar.insertAdjacentHTML('afterend', balloonoffBtnHTML);
     chatBar.insertAdjacentHTML('afterend', nametagsonoffBtnHTML);
+    chatBar.insertAdjacentHTML('afterend', darkmodeHTML);
 
     function sendJoke() {
         document.getElementById("inputMessage").value="";
