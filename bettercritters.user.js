@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BetterCritters
 // @namespace    http://tampermonkey.net/
-// @version      1.1.0
+// @version      1.1.2
 // @description  try to take over the world!
 // @author       slaggo
 // @match        https://boxcritters.com/play/*
@@ -33,9 +33,11 @@ window.addEventListener('load', function() {
 
     var chatBar = document.getElementsByClassName("input-group")[0];
     var jokeBtnHTML = `<span class="input-group-btn"><button id="jokebtn" class="btn btn-success">Joke</button></span>`;
-    var typewriterBtnHTML = `<span class="input-group-btn"><button id="typewriterbtn" class="btn btn-warning">Typewriter</button></span>`;
+    var clapBtnHTML = `<span class="input-group-btn"><button id="clapbtn" class="btn btn-warning">Clap</button></span>`;
+    var balonoffBtnHTML = `<span class="input-group-btn"><button id="balonoffbtn" class="btn btn-info">Chat Balloons On/Off</button></span>`;
     chatBar.insertAdjacentHTML('beforeend', jokeBtnHTML);
-    chatBar.insertAdjacentHTML('beforeend', typewriterBtnHTML);
+    chatBar.insertAdjacentHTML('beforeend', clapBtnHTML);
+    chatBar.insertAdjacentHTML('afterend', balonoffBtnHTML);
 
     function sendJoke() {
         document.getElementById("inputMessage").value="";
@@ -45,29 +47,34 @@ window.addEventListener('load', function() {
             world.sendMessage(joke.p); // Send the punchline
         }, 5000 ); // end delay
     }
-    
-    function sendTypewriter() {
-        var twMessage = document.getElementById("inputMessage").value;
+
+    function sendClap() {
+        var message = document.getElementById("inputMessage").value;
         document.getElementById("inputMessage").value="";
-        var i;
-        var final = "";
-        for(i=0;i<twMessage.length;i++) {
-            final+=twMessage.charAt(i);
-            delay(function(){
-                world.sendMessage(final);
-            }, 50); 
-        }
+        message = message.split(" ").join("👏 ");
+        message = "👏 " + message + "👏"
+        console.log(message);
+        world.sendMessage(message);
+    }
+
+    function balonoff() {
+        document.getElementById("inputMessage").value="";
+        world.sendMessage("/balloons"); // Turn chat balloons off
     }
 
     var jokeBtn = document.querySelector ("#jokebtn");
     if (jokeBtn) {
         jokeBtn.addEventListener ("click", sendJoke, false);
     }
-    var typewriterBtn = document.querySelector ("#typewriterbtn");
-    if (typewriterBtn) {
-        typewriterBtn.addEventListener ("click", sendTypewriter, false);
+    var clapBtn = document.querySelector ("#clapbtn");
+    if (clapBtn) {
+        clapBtn.addEventListener ("click", sendClap, false);
     }
 
+    var balonoffBtn = document.querySelector ("#balonoffbtn");
+    if (balonoffBtn) {
+        balonoffBtn.addEventListener ("click", balonoff, false);
+    }
 }, false);
 
 
