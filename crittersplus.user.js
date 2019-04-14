@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://tampermonkey.net/
-// @version      1.1.3.5
+// @version      1.1.3.8
 // @description  try to take over the world!
 // @author       slaggo, codejk
 // @match        http*://boxcritters.com/play/*
