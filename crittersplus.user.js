@@ -98,7 +98,7 @@ window.addEventListener('load', function() {
         } else {
             document.body.style = "background-color:#f5f5f5";
         }
-    } false);
+    });
 }, false);
 
 
