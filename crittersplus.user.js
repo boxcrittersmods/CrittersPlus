@@ -71,6 +71,14 @@ window.addEventListener('load', function() {
         document.getElementById("inputMessage").value="";
         world.sendMessage("/nicknames"); // Turn name tags on/off
     }
+    
+    function darkmodeToggle() {
+        if(darkmodeBox.checked == true) {
+            document.body.style = "background-color:#36393f";
+        } else {
+            document.body.style = "background-color:#f7f7f7";
+        }
+    }
 
     var jokeBtn = document.querySelector ("#jokebtn");
     if (jokeBtn) {
@@ -89,5 +97,10 @@ window.addEventListener('load', function() {
     var nametagsonoffBtn = document.querySelector ("#nametagsonoffbtn");
     if (nametagsonoffBtn) {
         nametagsonoffBtn.addEventListener ("click", nametagsonoff, false);
+    }
+    
+    var darkmodeBox = document.querySelector ("#darkmode");
+    if (darkmodeBox) {
+        darkmodeBox.addEventListener ("click", darkmodeToggle, false);
     }
 }, false);
