@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://tampermonkey.net/
-// @version      1.1.4
+// @version      1.1.4.1
 // @description  try to take over the world!
 // @author       slaggo, codejk
 // @match        http*://boxcritters.com/play/*
@@ -74,9 +74,9 @@ window.addEventListener('load', function() {
     
     function darkmodeToggle() {
         if(darkmodeBox.checked == true) {
-            document.body.style = "background-color:rgb(16, 21, 31);";
+            document.body.style = "background-color:rgb(16, 21, 31);transition:0.5s;";
         } else {
-            document.body.style = "background-color:#f7f7f7";
+            document.body.style = "background-color:#f7f7f7transition:0.5s;";
         }
     }
 
