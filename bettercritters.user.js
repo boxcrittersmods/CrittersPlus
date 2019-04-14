@@ -38,7 +38,7 @@ window.addEventListener('load', function() {
     chatBar.insertAdjacentHTML('beforeend', typewriterBtnHTML);
 
     function sendJoke() {
-        $('#inputMessage').val('');
+        document.getElementById("inputMessage").value="";
         var joke = jokes[(Math.floor(Math.random() * jokes.length))]; // Retrieve random joke from variable
         world.sendMessage(joke.j); // Send the first part of the joke
         delay(function(){
