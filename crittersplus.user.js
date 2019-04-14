@@ -4,7 +4,7 @@
 // @version      1.1.21
 // @description  try to take over the world!
 // @author       slaggo, codejk
-// @match        https://boxcritters.com/play/*
+// @match        http*://boxcritters.com/play/*
 // @grant        none
 // ==/UserScript==
 
