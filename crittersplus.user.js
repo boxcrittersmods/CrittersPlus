@@ -90,13 +90,4 @@ window.addEventListener('load', function() {
     if (nametagsonoffBtn) {
         nametagsonoffBtn.addEventListener ("click", nametagsonoff, false);
     }
-    
-    var darkmodeCB = document.querySelector("#darkmode");
-    darkmodeCB.addEventListener( 'change', function() {
-        if(this.checked) {
-            document.body.style = "background-color:black";
-        } else {
-            document.body.style = "background-color:#f5f5f5";
-        }
-    });
 }, false);
