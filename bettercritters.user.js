@@ -32,8 +32,8 @@ var delay = ( function() {
 window.addEventListener('load', function() {
     
     var chatBar = document.getElementsByClassName("input-group")[0];
-    var jokeBtnHTML = `<span class="input-group-btn"><button id="jokebtn" class="btn btn-success chat-btn">Joke</button></span>`;
-    var typewriterBtnHTML = `<span class="input-group-btn"><button id="typewriterbtn" class="btn btn-warning chat-btn">Typewriter</button></span>`;
+    var jokeBtnHTML = `<span class="input-group-btn"><button id="jokebtn" class="btn btn-success">Joke</button></span>`;
+    var typewriterBtnHTML = `<span class="input-group-btn"><button id="typewriterbtn" class="btn btn-warning">Typewriter</button></span>`;
     chatBar.insertAdjacentHTML('beforeend', jokeBtnHTML);
     chatBar.insertAdjacentHTML('beforeend', typewriterBtnHTML);
 
