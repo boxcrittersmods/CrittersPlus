@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://tampermonkey.net/
-// @version      1.1.3.7
+// @version      1.1.3.5
 // @description  try to take over the world!
 // @author       slaggo, codejk
 // @match        http*://boxcritters.com/play/*
@@ -100,5 +100,3 @@ window.addEventListener('load', function() {
         }
     });
 }, false);
-
-
