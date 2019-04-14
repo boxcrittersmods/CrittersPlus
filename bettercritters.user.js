@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         BetterCritters
+// @name         Critters+
 // @namespace    http://tampermonkey.net/
 // @version      1.1.2
 // @description  try to take over the world!
