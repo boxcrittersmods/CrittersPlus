@@ -45,10 +45,27 @@ window.addEventListener('load', function() {
             world.sendMessage(joke.p); // Send the punchline
         }, 5000 ); // end delay
     }
+    
+    function sendTypewriter() {
+        var twMessage = document.getElementById("inputMessage").value;
+        document.getElementById("inputMessage").value="";
+        var i;
+        var final = "";
+        for(i=0;i<twMessage.length;i++) {
+            final+=twMessage.charAt(i);
+            delay(function(){
+                world.sendMessage(final);
+            }, 50); 
+        }
+    }
 
     var jokeBtn = document.querySelector ("#jokebtn");
     if (jokeBtn) {
         jokeBtn.addEventListener ("click", sendJoke, false);
+    }
+    var typewriterBtn = document.querySelector ("#typewriterbtn");
+    if (typewriterBtn) {
+        typewriterBtn.addEventListener ("click", sendTypewriter, false);
     }
 
 }, false);
