@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BetterCritters
 // @namespace    http://tampermonkey.net/
-// @version      0.0.1
+// @version      1.0.0
 // @description  try to take over the world!
 // @author       slaggo
 // @match        https://boxcritters.com/play/*
