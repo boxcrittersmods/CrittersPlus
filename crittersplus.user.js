@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://tampermonkey.net/
-// @version      1.1.5
+// @version      1.1.6
 // @updateURL    https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @downloadURL  https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @description  Adds new features to BoxCritters to improve your experience!
@@ -39,6 +39,8 @@ var delay = ( function() {
 
 window.addEventListener('load', function() {
 
+    // Sets the theme to dark if browser supports webstorage
+
     var chatBar = document.getElementsByClassName("input-group")[0];
     var chatBox = document.getElementsByClassName("row justify-content-center")[1];
     var jokeBtnHTML = `<span class="input-group-btn"><button id="jokebtn" class="btn btn-success">Joke</button></span>`;
@@ -53,6 +55,11 @@ window.addEventListener('load', function() {
     chatBar.insertAdjacentHTML('afterend', nametagsonoffBtnHTML);
     chatBar.insertAdjacentHTML('afterend', redeemallitemsBtnHTML);
     chatBox.insertAdjacentHTML('afterend', darkmodeHTML);
+
+    if (localStorage.getItem("theme") == "dark") {
+        document.body.style = "background-color:rgb(16, 21, 31);transition:0.5s;";
+        document.getElementById("darkmode").checked = true;
+    }
 
     function sendJoke() {
         document.getElementById("inputMessage").value="";
@@ -84,8 +91,10 @@ window.addEventListener('load', function() {
 
     function darkmodeToggle() {
         if(darkmodeBox.checked == true) {
+            localStorage.setItem("theme", "dark");
             document.body.style = "background-color:rgb(16, 21, 31);transition:0.5s;";
         } else {
+            localStorage.setItem("theme", "light");
             document.body.style = "background-color:#f7f7f7;transition:0.5s;";
         }
     }
