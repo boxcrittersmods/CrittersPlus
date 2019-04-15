@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Critters+
-// @namespace    http://tampermonkey.net/
+// @namespace    http://discord.gg/G3PTYPy
 // @version      1.1.6
 // @updateURL    https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @downloadURL  https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
