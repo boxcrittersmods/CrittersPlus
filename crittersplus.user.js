@@ -47,7 +47,7 @@ window.addEventListener('load', function() {
     var clapBtnHTML = `<span class="input-group-btn"><button id="clapbtn" class="btn btn-warning">Clap</button></span>`;
     var balloonoffBtnHTML = `<span class="input-group-btn"><button id="balloonoffbtn" class="btn btn-info">Chat Balloons On/Off</button></span>`;
     var nametagsonoffBtnHTML = `<span class="input-group-btn"><button id="nametagsonoffbtn" class="btn btn-info">Name Tags On/Off</button></span>`;
-    var darkmodeHTML = `<div id="dmDiv" class="row justify-content-center"><span><input class="form-check-input" type="checkbox" value="" id="darkmode" style="color:#696f75;"><label class="form-check-label" for="darkmode">Dark Mode</label></span></div>`;
+    var darkmodeHTML = `<div id="dmDiv" class="row justify-content-center"><span><input class="form-check-input" type="checkbox" value="" id="darkmode"><label class="form-check-label" for="darkmode"  style="color:#696f75;">Dark Mode</label></span></div>`;
     var redeemallitemsBtnHTML = `<span class="input-group-btn"><button id="redeemallitemsbtn" class="btn btn-danger">Collect unredeemed items</button></span>`;
     chatBar.insertAdjacentHTML('beforeend', jokeBtnHTML);
     chatBar.insertAdjacentHTML('beforeend', clapBtnHTML);
