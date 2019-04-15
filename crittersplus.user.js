@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      1.1.6
+// @version      1.1.7
 // @updateURL    https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @downloadURL  https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @description  Adds new features to BoxCritters to improve your experience!
@@ -47,7 +47,7 @@ window.addEventListener('load', function() {
     var clapBtnHTML = `<span class="input-group-btn"><button id="clapbtn" class="btn btn-warning">Clap</button></span>`;
     var balloonoffBtnHTML = `<span class="input-group-btn"><button id="balloonoffbtn" class="btn btn-info">Chat Balloons On/Off</button></span>`;
     var nametagsonoffBtnHTML = `<span class="input-group-btn"><button id="nametagsonoffbtn" class="btn btn-info">Name Tags On/Off</button></span>`;
-    var darkmodeHTML = `<div id="dmDiv" class="row justify-content-center"><span><input class="form-check-input" type="checkbox" value="" id="darkmode"><label class="form-check-label" for="darkmode">Dark Mode</label></span></div>`;
+    var darkmodeHTML = `<div id="dmDiv" class="row justify-content-center"><span><input class="form-check-input" type="checkbox" value="" id="darkmode" style="color:#696f75;"><label class="form-check-label" for="darkmode">Dark Mode</label></span></div>`;
     var redeemallitemsBtnHTML = `<span class="input-group-btn"><button id="redeemallitemsbtn" class="btn btn-danger">Collect unredeemed items</button></span>`;
     chatBar.insertAdjacentHTML('beforeend', jokeBtnHTML);
     chatBar.insertAdjacentHTML('beforeend', clapBtnHTML);
@@ -74,7 +74,7 @@ window.addEventListener('load', function() {
         var message = document.getElementById("inputMessage").value;
         document.getElementById("inputMessage").value="";
         message = message.split(" ").join("👏 ");
-        message = "👏 " + message + "👏"
+        message = "👏" + message + "👏"
         console.log(message);
         world.sendMessage(message);
     }
