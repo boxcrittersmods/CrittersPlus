@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://tampermonkey.net/
-// @version      1.1.4.4
+// @version      1.1.4.5
 // @updateURL    https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @downloadURL  https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo, codejk
-// @match        http*://boxcritters.com/play/*
+// @match        https://boxcritters.com/play/*
+// @match        http://boxcritters.com/play/*
 // @icon         https://raw.githubusercontent.com/slaggo/CrittersPlus/master/icon.png
 // @grant        none
 // ==/UserScript==
