@@ -73,7 +73,7 @@ window.addEventListener('load', function() {
     function sendClap() {
         var message = document.getElementById("inputMessage").value;
         document.getElementById("inputMessage").value="";
-        message = message.split(" ").join("👏 ");
+        message = message.split(" ").join(" 👏 ");
         message = "👏" + message + "👏"
         console.log(message);
         world.sendMessage(message);
