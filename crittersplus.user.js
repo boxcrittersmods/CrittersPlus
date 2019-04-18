@@ -113,6 +113,7 @@ window.addEventListener('load', function() {
         world.sendMessage("/boxcritterswiki"); // Redeems Newspaper hat
         world.sendMessage("/andybulletin"); // Redeems Propeller Hat
         world.sendMessage("/thekeeper"); // Redeems Party Hat
+        world.sendMessage("/3dboxcritters"); // Redeems Black 3D Glasses
     }
 
     var jokeBtn = document.querySelector ("#jokebtn");
