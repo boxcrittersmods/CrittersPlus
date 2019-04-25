@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      1.1.8.3
+// @version      1.1.8.4
 // @updateURL    https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @downloadURL  https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @description  Adds new features to BoxCritters to improve your experience!
@@ -115,6 +115,8 @@ window.addEventListener('load', function() {
         world.sendMessage("/thekeeper"); // Redeems Party Hat
         world.sendMessage("/3dboxcritters"); // Redeems Black 3D Glasses
         world.sendMessage("/bunnyhug"); // Redeems Black 3D Glasses
+        world.sendMessage("/explore"); // Redeems Red Plaid Shirt
+        world.sendMessage("/greenplumber"); // Redeems Green Cap
     }
 
     var jokeBtn = document.querySelector ("#jokebtn");
