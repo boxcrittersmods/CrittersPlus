@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      1.1.8.4
+// @version      1.1.8.5
 // @updateURL    https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @downloadURL  https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @description  Adds new features to BoxCritters to improve your experience!
-// @author       slaggo, with some help from codejk
+// @author       slaggo
 // @match        https://boxcritters.com/play/*
 // @match        http://boxcritters.com/play/*
 // @icon         https://raw.githubusercontent.com/slaggo/CrittersPlus/master/icon.png
@@ -49,12 +49,10 @@ window.addEventListener('load', function() {
     var balloonoffBtnHTML = `<span class="input-group-btn"><button id="balloonoffbtn" class="btn btn-info">Chat Balloons On/Off</button></span>`;
     var nametagsonoffBtnHTML = `<span class="input-group-btn"><button id="nametagsonoffbtn" class="btn btn-info">Name Tags On/Off</button></span>`;
     var darkmodeHTML = `<div id="dmDiv" class="row justify-content-center"><span><input class="form-check-input" type="checkbox" value="" id="darkmode"><label class="form-check-label" for="darkmode" style="color:#696f75;">Dark Mode</label></span></div>`;
-    var redeemallitemsBtnHTML = `<span class="input-group-btn"><button id="redeemallitemsbtn" class="btn btn-danger">Collect unredeemed items</button></span>`;
     chatBar.insertAdjacentHTML('beforeend', jokeBtnHTML);
     chatBar.insertAdjacentHTML('beforeend', clapBtnHTML);
     chatBar.insertAdjacentHTML('afterend', balloonoffBtnHTML);
     chatBar.insertAdjacentHTML('afterend', nametagsonoffBtnHTML);
-    chatBar.insertAdjacentHTML('afterend', redeemallitemsBtnHTML);
     chatBox.insertAdjacentHTML('afterend', darkmodeHTML);
 
     if (localStorage.getItem("theme") == "dark") {
@@ -98,25 +96,6 @@ window.addEventListener('load', function() {
             localStorage.setItem("theme", "light");
             document.body.style = "background-color:#f7f7f7;transition:0.5s;";
         }
-    }
-
-    function redeemallitems() {
-        document.getElementById("inputMessage").value="";
-        world.sendMessage("/rocketsnail"); // Redeems Viking Hat
-        world.sendMessage("/FreeItem"); // Redeems Free Item Of The Week
-        world.sendMessage("/boxcritters3d"); // Redeems 3D Glasses
-        world.sendMessage("/goodnight"); // Redeems Sleepy Hat
-        world.sendMessage("/discordcritters2k19"); // Redeems Discord Headphones
-        world.sendMessage("/cute"); // Redeems Pink Toque
-        world.sendMessage("/madeincanada"); // Redeems White Toque
-        world.sendMessage("/oommgames"); // Redeems Red Space Suit
-        world.sendMessage("/boxcritterswiki"); // Redeems Newspaper hat
-        world.sendMessage("/andybulletin"); // Redeems Propeller Hat
-        world.sendMessage("/thekeeper"); // Redeems Party Hat
-        world.sendMessage("/3dboxcritters"); // Redeems Black 3D Glasses
-        world.sendMessage("/bunnyhug"); // Redeems Black 3D Glasses
-        world.sendMessage("/explore"); // Redeems Red Plaid Shirt
-        world.sendMessage("/greenplumber"); // Redeems Green Cap
     }
 
     var jokeBtn = document.querySelector ("#jokebtn");
