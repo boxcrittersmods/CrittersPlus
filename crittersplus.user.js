@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      1.1.8.5
+// @version      1.1.8.7
 // @updateURL    https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @downloadURL  https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @description  Adds new features to BoxCritters to improve your experience!
@@ -12,6 +12,17 @@
 // @run-at       document-end
 // @grant        none
 // ==/UserScript==
+
+var favicon_link_html = document.createElement('link');
+favicon_link_html.rel = 'icon';
+favicon_link_html.href = 'https://boxcritters.com/favicon-32x32.png';
+favicon_link_html.type = 'image/x-icon';
+
+try {
+  document.getElementsByTagName('head')[0].appendChild( favicon_link_html );
+}
+catch(e) { }
+
 
 var jokes = [
     {"j":"What do you call a hamster in a tophat?","p":"Abrahamster Lincoln!"},
@@ -49,11 +60,13 @@ window.addEventListener('load', function() {
     var balloonoffBtnHTML = `<span class="input-group-btn"><button id="balloonoffbtn" class="btn btn-info">Chat Balloons On/Off</button></span>`;
     var nametagsonoffBtnHTML = `<span class="input-group-btn"><button id="nametagsonoffbtn" class="btn btn-info">Name Tags On/Off</button></span>`;
     var darkmodeHTML = `<div id="dmDiv" class="row justify-content-center"><span><input class="form-check-input" type="checkbox" value="" id="darkmode"><label class="form-check-label" for="darkmode" style="color:#696f75;">Dark Mode</label></span></div>`;
+    var freeitemBtnHTML = `<span class="input-group-btn"><button id="freeitembtn" class="btn btn-danger">Collect the current free item</button></span>`;
     chatBar.insertAdjacentHTML('beforeend', jokeBtnHTML);
     chatBar.insertAdjacentHTML('beforeend', clapBtnHTML);
     chatBar.insertAdjacentHTML('afterend', balloonoffBtnHTML);
     chatBar.insertAdjacentHTML('afterend', nametagsonoffBtnHTML);
     chatBox.insertAdjacentHTML('afterend', darkmodeHTML);
+    chatBar.insertAdjacentHTML('afterend', freeitemBtnHTML);
 
     if (localStorage.getItem("theme") == "dark") {
         document.body.style = "background-color:rgb(16, 21, 31);transition:0.5s;";
@@ -98,6 +111,11 @@ window.addEventListener('load', function() {
         }
     }
 
+    function freeitem() {
+        document.getElementById("inputMessage").value="";
+        world.sendMessage("/FreeItem"); // Redeems Free Item Of The Week
+    }
+
     var jokeBtn = document.querySelector ("#jokebtn");
     if (jokeBtn) {
         jokeBtn.addEventListener ("click", sendJoke, false);
@@ -122,9 +140,9 @@ window.addEventListener('load', function() {
         darkmodeBox.addEventListener ("click", darkmodeToggle, false);
     }
 
-    var redeemallitemsBtn = document.querySelector ("#redeemallitemsbtn");
-    if (redeemallitemsBtn) {
-        redeemallitemsBtn.addEventListener ("click", redeemallitems, false);
+    var freeitemBtn = document.querySelector ("#freeitembtn"); // Only collet the item obtainable by the freeitem code. //
+    if (freeitemBtn) {
+        freeitemBtn.addEventListener ("click", freeitem, false);
     }
 
 }, false);
