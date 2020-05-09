@@ -5,7 +5,7 @@
 // @updateURL    https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @downloadURL  https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @description  Adds new features to BoxCritters to improve your experience!
-// @author       slaggo
+// @author       slaggo.TumbleGamer
 // @match        https://boxcritters.com/play/*
 // @match        http://boxcritters.com/play/*
 // @icon         https://raw.githubusercontent.com/slaggo/CrittersPlus/master/icon.png
@@ -80,12 +80,14 @@ window.addEventListener('load', function() {
 
     function balloonoff() {
         document.getElementById("inputMessage").value="";
-        world.sendMessage("/balloons"); // Turn chat balloons off
+        //world.sendMessage("/balloons"); // Turn chat balloons off
+        world.stage.room.balloons.visible = !world.stage.room.ballons.visible;
     }
 
     function nametagsonoff() {
         document.getElementById("inputMessage").value="";
-        world.sendMessage("/nicknames"); // Turn name tags on/off
+        //world.sendMessage("/nicknames"); // Turn name tags on/off
+        world.stage.room.nicknames.visible = !world.stage.room.nicknames.visible;
     }
 
     function darkmodeToggle() {
