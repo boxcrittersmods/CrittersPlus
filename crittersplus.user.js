@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Critters+Dev
+// @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
 // @version      2.0.0.1 beta
 // @updateURL    https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
