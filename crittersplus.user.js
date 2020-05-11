@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      1.1.8.6
+// @version      1.1.8.7
 // @updateURL    https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @downloadURL  https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @description  Adds new features to BoxCritters to improve your experience!
@@ -26,6 +26,10 @@ var jokes = [
     {"j":"What kind of car does a raccoon drive?","p":"A furrari."}
 ]
 
+var button = [
+
+]
+
 // Code for delay function
 
 var delay = ( function() {
@@ -36,31 +40,27 @@ var delay = ( function() {
     };
 })();
 
+function camelize(str) {
+	return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function(match, index) {
+	  if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
+	  return index === 0 ? match.toLowerCase() : match.toUpperCase();
+	});
+  }
+
 // Runs on page load
 
 window.addEventListener('load', function() {
-
-    // Sets the theme to dark if browser supports webstorage
-
     var chatBar = document.getElementsByClassName("input-group")[0];
-    var chatBox = document.getElementsByClassName("row justify-content-center")[1];
-    var jokeBtnHTML = `<span class="input-group-btn"><button id="jokebtn" class="btn btn-success">Joke</button></span>`;
-    var clapBtnHTML = `<span class="input-group-btn"><button id="clapbtn" class="btn btn-warning">Clap</button></span>`;
-    var balloonoffBtnHTML = `<span class="input-group-btn"><button id="balloonoffbtn" class="btn btn-info">Chat Balloons On/Off</button></span>`;
-    var nametagsonoffBtnHTML = `<span class="input-group-btn"><button id="nametagsonoffbtn" class="btn btn-info">Name Tags On/Off</button></span>`;
-    var darkmodeHTML = `<div id="dmDiv" class="row justify-content-center"><span><input class="form-check-input" type="checkbox" value="" id="darkmode"><label class="form-check-label" for="darkmode" style="color:#696f75;">Dark Mode</label></span></div>`;
-    chatBar.insertAdjacentHTML('beforeend', jokeBtnHTML);
-    chatBar.insertAdjacentHTML('beforeend', clapBtnHTML);
-    chatBar.insertAdjacentHTML('afterend', balloonoffBtnHTML);
-    chatBar.insertAdjacentHTML('afterend', nametagsonoffBtnHTML);
-    chatBox.insertAdjacentHTML('afterend', darkmodeHTML);
+	var chatBox = document.getElementsByClassName("row justify-content-center")[1];
 
-    if (localStorage.getItem("theme") == "dark") {
-        document.body.style = "background-color:rgb(16, 21, 31);transition:0.5s;";
-        document.getElementById("darkmode").checked = true;
-    }
+	function createButton(name,cb,color="info",place='afterend') {
+		var btnHTML = `<span class="input-group-btn"><button id="cp${camelize(name)}" class="btn btn-${color}">${name}</button></span>`;
+		buttons.push(btnHTML);
+		chatBar.insertAdjacentHTML(place, btnHTML);
+		btnHTML.addEventListener ("click", cb, false);
+	}
 
-    function sendJoke() {
+	function sendJoke() {
         document.getElementById("inputMessage").value="";
         var joke = jokes[(Math.floor(Math.random() * jokes.length))]; // Retrieve random joke from variable
         world.sendMessage(joke.j); // Send the first part of the joke
@@ -78,17 +78,32 @@ window.addEventListener('load', function() {
         world.sendMessage(message);
     }
 
-    function balloonoff() {
+    function balloonToggle() {
         document.getElementById("inputMessage").value="";
         //world.sendMessage("/balloons"); // Turn chat balloons off
         world.stage.room.balloons.visible = !world.stage.room.ballons.visible;
     }
 
-    function nametagsonoff() {
+    function nametagsToggle() {
         document.getElementById("inputMessage").value="";
         //world.sendMessage("/nicknames"); // Turn name tags on/off
         world.stage.room.nicknames.visible = !world.stage.room.nicknames.visible;
     }
+
+	createButton("Joke",sendJoke,'success','beforeend');
+	createButton("Clap",sendClap,'warning','beforeend');
+	createButton("Chat Balloons",balloonToggle,'info');
+	createButton("NameTags",nametagsToggle,'info');
+
+    var darkmodeHTML = `<div id="dmDiv" class="row justify-content-center"><span><input class="form-check-input" type="checkbox" value="" id="darkmode"><label class="form-check-label" for="darkmode" style="color:#696f75;">Dark Mode</label></span></div>`;
+    chatBox.insertAdjacentHTML('afterend', darkmodeHTML);
+
+    if (localStorage.getItem("theme") == "dark") {
+        document.body.style = "background-color:rgb(16, 21, 31);transition:0.5s;";
+        document.getElementById("darkmode").checked = true;
+    }
+
+    
 
     function darkmodeToggle() {
         if(darkmodeBox.checked == true) {
@@ -98,30 +113,6 @@ window.addEventListener('load', function() {
             localStorage.setItem("theme", "light");
             document.body.style = "background-color:#f7f7f7;transition:0.5s;";
         }
-    }
-
-    var jokeBtn = document.querySelector ("#jokebtn");
-    if (jokeBtn) {
-        jokeBtn.addEventListener ("click", sendJoke, false);
-    }
-    var clapBtn = document.querySelector ("#clapbtn");
-    if (clapBtn) {
-        clapBtn.addEventListener ("click", sendClap, false);
-    }
-
-    var balloonoffBtn = document.querySelector ("#balloonoffbtn");
-    if (balloonoffBtn) {
-        balloonoffBtn.addEventListener ("click", balloonoff, false);
-    }
-
-    var nametagsonoffBtn = document.querySelector ("#nametagsonoffbtn");
-    if (nametagsonoffBtn) {
-        nametagsonoffBtn.addEventListener ("click", nametagsonoff, false);
-    }
-
-    var darkmodeBox = document.querySelector ("#darkmode");
-    if (darkmodeBox) {
-        darkmodeBox.addEventListener ("click", darkmodeToggle, false);
     }
 
     var redeemallitemsBtn = document.querySelector ("#redeemallitemsbtn");
