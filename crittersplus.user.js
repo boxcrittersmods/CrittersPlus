@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      1.1.8.8
+// @version      1.1.8.9
 // @updateURL    https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @downloadURL  https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @description  Adds new features to BoxCritters to improve your experience!
@@ -62,10 +62,12 @@ window.addEventListener('load', function() {
 		return a;
 	};
 
+	
+
 	function createButton(name,cb,color="info",place='afterend') {
 		var btnHTML = `<span class="input-group-btn"><button id="cp${camelize(name)}" class="btn btn-${color}">${name}</button></span>`;
 		chatBar.insertAdjacentHTML(place, btnHTML);
-		$(`#cp${camelize(name)}`).addEventListener ("click", cb, false);
+		$(`#cp${camelize(name)}`).click(cb);
 	}
 
 	function sendJoke() {
