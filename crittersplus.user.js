@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.0.0.1 beta
+// @version      2.0.0.2 beta
 // @updateURL    https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @downloadURL  https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @description  Adds new features to BoxCritters to improve your experience!
@@ -78,7 +78,7 @@ window.addEventListener('load', function() {
 					<span aria-hidden="true">&times;</span>
 				  </button></div>
 	                <div class="modal-body"></div>
-	                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="CP_modal">Ok</button></div>
+	                <div class="modal-footer"></div>
 	            </div>
 	        </div>
 		</div>`;
