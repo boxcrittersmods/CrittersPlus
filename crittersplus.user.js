@@ -56,7 +56,10 @@ window.addEventListener('load', function() {
 			name,
 			cb,
 			button:undefined,
-			keyBind:undefined
+			keyBind:undefined,
+			makeButton:(color)=> {
+
+			}
 		};
 		actions.push(a);
 		return a;
@@ -68,6 +71,7 @@ window.addEventListener('load', function() {
 		var btnHTML = `<span class="input-group-btn"><button id="cp${camelize(name)}" class="btn btn-${color}">${name}</button></span>`;
 		chatBar.insertAdjacentHTML(place, btnHTML);
 		$(`#cp${camelize(name)}`).click(cb);
+		return $(`#cp${camelize(name)}`)
 	}
 
 	function sendJoke() {
