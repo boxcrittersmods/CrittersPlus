@@ -166,7 +166,7 @@ window.addEventListener('load', function() {
 		</div>
 	  </div>
 `
-		createDialogue("Critters+ Settings",settingHTML);
+		createDialogue("Critters+ Settings",settingHTML,"");
 		macros.forEach(a=>{
 			createSetting(a.name,a);
 		})
