@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      1.1.8.9
+// @version      1.1.8.10
 // @updateURL    https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @downloadURL  https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @description  Adds new features to BoxCritters to improve your experience!
@@ -74,6 +74,10 @@ window.addEventListener('load', function() {
 		return $(`#cp${camelize(name)}`)
 	}
 
+	$(document).keydown(function(e) {
+		console.log("[CP] Key",e.which)
+	})
+
 	function sendJoke() {
         document.getElementById("inputMessage").value="";
         var joke = jokes[(Math.floor(Math.random() * jokes.length))]; // Retrieve random joke from variable
@@ -95,7 +99,7 @@ window.addEventListener('load', function() {
     function balloonToggle() {
         document.getElementById("inputMessage").value="";
         //world.sendMessage("/balloons"); // Turn chat balloons off
-        world.stage.room.balloons.visible = !world.stage.room.ballons.visible;
+        world.stage.room.balloons.visible = !world.stage.room.balloons.visible;
     }
 
     function nametagsToggle() {
