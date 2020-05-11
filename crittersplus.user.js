@@ -51,7 +51,7 @@ window.addEventListener('load', function() {
 
 	var actions = [];
 
-	var createAction = (name,cb) => {}
+	var createAction = (name,cb) => {
 		var a = {
 			name,
 			cb,
