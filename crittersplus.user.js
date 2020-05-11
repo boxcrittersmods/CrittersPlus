@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      1.1.8.7
+// @version      1.1.8.8
 // @updateURL    https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @downloadURL  https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
 // @description  Adds new features to BoxCritters to improve your experience!
@@ -24,10 +24,6 @@ var jokes = [
     {"j":"Why is the snail the strongest animal?","p":"Because he carries a house on his back!"},
     {"j":"How do snails make important calls?","p":"On shell phones."},
     {"j":"What kind of car does a raccoon drive?","p":"A furrari."}
-]
-
-var button = [
-
 ]
 
 // Code for delay function
@@ -53,11 +49,23 @@ window.addEventListener('load', function() {
     var chatBar = document.getElementsByClassName("input-group")[0];
 	var chatBox = document.getElementsByClassName("row justify-content-center")[1];
 
+	var actions = [];
+
+	var createAction = (name,cb) => {}
+		var a = {
+			name,
+			cb,
+			button:undefined,
+			keyBind:undefined
+		};
+		actions.push(a);
+		return a;
+	};
+
 	function createButton(name,cb,color="info",place='afterend') {
 		var btnHTML = `<span class="input-group-btn"><button id="cp${camelize(name)}" class="btn btn-${color}">${name}</button></span>`;
-		buttons.push(btnHTML);
 		chatBar.insertAdjacentHTML(place, btnHTML);
-		btnHTML.addEventListener ("click", cb, false);
+		$(`#cp${camelize(name)}`).addEventListener ("click", cb, false);
 	}
 
 	function sendJoke() {
