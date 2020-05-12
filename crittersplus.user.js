@@ -241,19 +241,19 @@ window.addEventListener('load', function() {
     clapMacro.ToggleButton('warning','beforeend');
 	new Macro("Chat Balloons",balloonToggle);
 	new Macro("NameTags",nametagsToggle);
-	new Macro("/freeitem",()=>{
+	new Macro("freeitem",()=>{
         world.sendMessage("/freeitem");
     });
-	new Macro("/pop",()=>{
+	new Macro("pop",()=>{
         world.sendMessage("/pop");
     });
-	new Macro("/beep",()=>{
+	new Macro("beep",()=>{
         world.sendMessage("/beep");
     });
-	new Macro("/darkmode",()=>{
+	new Macro("darkmode",()=>{
         world.sendMessage("/darkmode");
     });
-	new Macro("/game",()=>{
+	new Macro("game",()=>{
         world.sendMessage("/game");
     });
 
