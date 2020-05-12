@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.0.9
+// @version      2.0.10
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://boxcritters.com/play/*
@@ -11,7 +11,10 @@
 // @grant        none
 // ==/UserScript==
 var CrittersPlus = {};
-CrittersPlus.data = GM.getValue("CrittersPlus_data",{});
+(async ()=>{
+CrittersPlus.data = await GM.getValue("CrittersPlus_data",{});
+
+})()
 window.CrittersPlus = CrittersPlus;
 
 console.info("-----------------------------------")
@@ -64,7 +67,7 @@ function camelize(str) {
 
 // Runs on page load
 
-window.addEventListener('load', function() {
+window.addEventListener('load', async function() {
     var chatBar = document.getElementsByClassName("input-group")[0];
 	var chatBox = document.getElementsByClassName("row justify-content-center")[1];
 
