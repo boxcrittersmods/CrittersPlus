@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.0.0
+// @version      2.0.1
 // @updateURL    https://github.com/boxcritters/CrittersPlus/raw/master/crittersplus.user.js
 // @downloadURL  https://github.com/boxcritters/CrittersPlus/raw/master/crittersplus.user.js
 // @description  Adds new features to BoxCritters to improve your experience!
@@ -12,6 +12,9 @@
 // @run-at       document-end
 // @grant        none
 // ==/UserScript==
+
+var CrittersPlus = {};
+unsafeWindow.CrittersPlus = CrittersPlus;
 
 console.info("-----------------------------------")
 console.info("[CRITTERS+]")
@@ -42,6 +45,7 @@ var jokes = [
     {"j":"How do snails make important calls?","p":"On shell phones."},
     {"j":"What kind of car does a raccoon drive?","p":"A furrari."}
 ]
+CrittersPlus.jokes = jokes;
 
 // Code for delay function
 
@@ -67,6 +71,7 @@ window.addEventListener('load', function() {
 	var chatBox = document.getElementsByClassName("row justify-content-center")[1];
 
 	var macros = [];
+	CrittersPlus.macros = macros;
 	var binding = undefined;
 
 	//SetupModel
@@ -149,6 +154,7 @@ window.addEventListener('load', function() {
         macros.push(macro);
         return macro;
 	}
+	CrittersPlus.createMacro = createMacro;
 
 	$(document).keydown(function(e) {
 		if(binding) {
@@ -173,7 +179,7 @@ window.addEventListener('load', function() {
     }
 
 
-	function Settings() {
+	function DisplaySettings() {
 		//Open Window with dropdown and stuff
 		var settingHTML = `
 		<h2>Macros</h2>
@@ -221,7 +227,7 @@ window.addEventListener('load', function() {
         world.stage.room.nicknames.visible = !world.stage.room.nicknames.visible;
     }
 
-	createButton('settings',Settings,'primary','beforeend','<i class="fas fa-cog"></i>');
+	createButton('settings',DisplaySettings,'primary','beforeend','<i class="fas fa-cog"></i>');
 	createButton("Joke",sendJoke,'success','beforeend');
 	createButton("Clap",sendClap,'warning','beforeend');
 	createMacro("Chat Balloons",balloonToggle);
