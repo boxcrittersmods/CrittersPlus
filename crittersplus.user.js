@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.0.2
+// @version      2.0.3
 // @updateURL    https://github.com/boxcritters/CrittersPlus/raw/master/crittersplus.user.js
 // @downloadURL  https://github.com/boxcritters/CrittersPlus/raw/master/crittersplus.user.js
 // @description  Adds new features to BoxCritters to improve your experience!
@@ -121,14 +121,11 @@ window.addEventListener('load', function() {
 	  btnButton.click(()=>{
             btnButton.toggleClass('btn-success');
              btnButton.toggleClass('btn-outline-secondary');
-		  if(macro.button) {
-			macro.button.toggle();
-		  } else {
-			macro.button = createButton(macro.name,macro.cb);
-		  }
+          macro.ToggleButton();
 	  });
         btnKey.click(()=>{
             if(binding==macro) {
+                macro.key = undefined;
                 binding=undefined;
                 btnKey.removeClass('btn-danger')
                 btnKey.addClass('btn-outline-secondary')
@@ -144,21 +141,28 @@ window.addEventListener('load', function() {
 
 	}
 
-	function createMacro(name,cb) {
-		var macro = {
-            name,
-            cb,
-            button: undefined,
-            key: undefined
-        };
-        macros.push(macro);
-        return macro;
+	function Macro(name,cb) {
+        this.name = name;
+        this.cb = cb;
+        this.button = undefined;
+        this.key = undefined;
+		macros.push(this);
 	}
-	CrittersPlus.createMacro = createMacro;
+	Macro.prototype.ToggleButton = function(color,place,text) {
+		if(this.button) {
+			this.button.toggle();
+		} else {
+			this.button = createButton(this.name,this.cb,color,place,text);
+		}
+	}
+	Macro.prototype.BindKey = function(e) {
+		this.key = e.which;
+	}
+	CrittersPlus.Macro = Macro;
 
 	$(document).keydown(function(e) {
 		if(binding) {
-			binding.key = e.which;
+			binding.BindKey(e);
 			binding = undefined;
             RefreshSettings();
 			return;
@@ -227,12 +231,15 @@ window.addEventListener('load', function() {
         world.stage.room.nicknames.visible = !world.stage.room.nicknames.visible;
     }
 
-	createButton('settings',DisplaySettings,'primary','beforeend','<i class="fas fa-cog"></i>');
-	createButton("Joke",sendJoke,'success','beforeend');
-	createButton("Clap",sendClap,'warning','beforeend');
-	createMacro("Chat Balloons",balloonToggle);
-	createMacro("NameTags",nametagsToggle);
-	createMacro("FreeItem",()=>{
+	var settingsMacro = new Macro('settings',DisplaySettings)
+    settingsMacro.ToggleButton('primary','beforeend','<i class="fas fa-cog"></i>');
+	var jokeMacro = new Macro("Joke",sendJoke);
+	jokeMacro.ToggleButton('success','beforeend');
+	var clapMacro = new Macro("Clap",sendClap);
+    clapMacro.ToggleButton('warning','beforeend');
+	new Macro("Chat Balloons",balloonToggle);
+	new Macro("NameTags",nametagsToggle);
+	new Macro("FreeItem",()=>{
         world.sendMessage("/freeitem");
     });
 
