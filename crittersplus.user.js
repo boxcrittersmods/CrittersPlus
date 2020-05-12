@@ -1,9 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.0.4
-// @updateURL    https://github.com/boxcritters/CrittersPlus/raw/master/crittersplus.user.js
-// @downloadURL  https://github.com/boxcritters/CrittersPlus/raw/master/crittersplus.user.js
+// @version      2.0.5
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://boxcritters.com/play/*
@@ -193,6 +191,7 @@ window.addEventListener('load', function() {
 <div class="input-group" id="cpSettingCreate">
 		<input type="text" class="form-control" value="Coming Soon" disabled>
 		<div class="input-group-append">
+			<input type="text" class="form-control" value="Coming Soon" disabled>
 		  <button class="btn btn-outline-secondary" type="button" id="cpSettingJS-button" disabled>JS</button>
 		  <button class="btn btn-outline-secondary" type="button" id="cpSettingChat-key"  disabled>Chat</button>
 		</div>
