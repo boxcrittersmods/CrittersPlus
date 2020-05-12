@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Critters
+// @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
 // @version      2.0.1
 // @updateURL    https://github.com/boxcritters/CrittersPlus/raw/master/crittersplus.user.js
