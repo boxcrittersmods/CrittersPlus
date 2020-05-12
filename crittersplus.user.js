@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.0.7
+// @version      2.0.8
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://boxcritters.com/play/*
@@ -10,8 +10,8 @@
 // @run-at       document-end
 // @grant        none
 // ==/UserScript==
-
 var CrittersPlus = {};
+CrittersPlus.data = GM_getValue("CrittersPlus_data",{});
 window.CrittersPlus = CrittersPlus;
 
 console.info("-----------------------------------")
@@ -31,7 +31,7 @@ console.info("-----------------------------------")
 }
 
 
-var jokes = [
+var jokes = CrittersPlus.data.jokes || [
     {"j":"What do you call a hamster in a tophat?","p":"Abrahamster Lincoln!"},
     {"j":"Where does a hamster go for vacation?","p":"Hamsterdam!"},
     {"j":"What do you call a hamster with no legs?","p":"A furball!"},
@@ -43,7 +43,7 @@ var jokes = [
     {"j":"How do snails make important calls?","p":"On shell phones."},
     {"j":"What kind of car does a raccoon drive?","p":"A furrari."}
 ]
-CrittersPlus.jokes = jokes;
+CrittersPlus.data.jokes = jokes;
 
 // Code for delay function
 
@@ -68,8 +68,7 @@ window.addEventListener('load', function() {
     var chatBar = document.getElementsByClassName("input-group")[0];
 	var chatBox = document.getElementsByClassName("row justify-content-center")[1];
 
-	var macros = [];
-	CrittersPlus.macros = macros;
+	var macros = CrittersPlus.data.macros||[];
 	var binding = undefined;
 
 	//SetupModel
@@ -162,6 +161,7 @@ window.addEventListener('load', function() {
 		if(binding) {
 			binding.BindKey(e);
 			binding = undefined;
+			save();
             RefreshSettings();
 			return;
 		}
@@ -172,6 +172,10 @@ window.addEventListener('load', function() {
 			}
 		})
 	});
+
+	function save() {
+		GM_setValue("CrittersPlus_data",CrittersPlus.data);
+	}
 
     function RefreshSettings(){
         $('#cp_settingList').empty();
@@ -232,6 +236,8 @@ window.addEventListener('load', function() {
         document.getElementById("inputMessage").value="";
         world.stage.room.nicknames.visible = !world.stage.room.nicknames.visible;
     }
+if(!CrittersPlus.data.macros) {
+	CrittersPlus.data.macros = macros;
 
 	var settingsMacro = new Macro('settings',DisplaySettings)
     settingsMacro.ToggleButton('primary','beforeend','<i class="fas fa-cog"></i>');
@@ -255,7 +261,9 @@ window.addEventListener('load', function() {
     });
 	new Macro("game",()=>{
         world.sendMessage("/game");
-    });
+	});
+	save();
+}
 
     var darkmodeHTML = `<div id="dmDiv" class="row justify-content-center"><span><input class="form-check-input" type="checkbox" value="" id="darkmode"><label class="form-check-label" for="darkmode" style="color:#696f75;">Dark Mode</label></span></div>`;
     chatBox.insertAdjacentHTML('afterend', darkmodeHTML);
