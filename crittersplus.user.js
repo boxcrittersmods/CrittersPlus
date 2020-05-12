@@ -1,14 +1,14 @@
 // ==UserScript==
-// @name         Critters+
+// @name         Critters
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.0.0.2 beta
-// @updateURL    https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
-// @downloadURL  https://github.com/slaggo/CrittersPlus/raw/master/crittersplus.user.js
+// @version      2.0.0
+// @updateURL    https://github.com/boxcritters/CrittersPlus/raw/master/crittersplus.user.js
+// @downloadURL  https://github.com/boxcritters/CrittersPlus/raw/master/crittersplus.user.js
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://boxcritters.com/play/*
 // @match        http://boxcritters.com/play/*
-// @icon         https://raw.githubusercontent.com/slaggo/CrittersPlus/master/icon.png
+// @icon         https://raw.githubusercontent.com/boxcritters/CrittersPlus/master/icon.png
 // @run-at       document-end
 // @grant        none
 // ==/UserScript==
@@ -93,62 +93,84 @@ window.addEventListener('load', function() {
 		if(footer) $('#CP_modal .modal-footer').html(footer);
 		return $('#CP_model')
 	}
-	
+
 
 	function createButton(name,cb,color="info",place='afterend',text) {
 		var btnHTML = `<span class="input-group-btn"><button id="cp${camelize(name)}" class="btn btn-${color}">${text||name}</button></span>`;
 		chatBar.insertAdjacentHTML(place, btnHTML);
 		$(`#cp${camelize(name)}`).click(cb);
-		return $(`#cp${camelize(name)}`)
+		return $(`#cp${camelize(name)}`);
 	}
 
 	function createSetting(id,macro) {
 		var settingHTML = $(`<div class="list-group-item"><div class="input-group" id="cpSetting${camelize(id)}">
-		<input type="text" class="form-control" value='${macro.name}' aria-label="Recipient's username" aria-describedby="basic-addon2" disabled>
+		<input type="text" class="form-control" value='${macro.name}' disabled>
 		<div class="input-group-append">
-		  <button class="btn btn-outline-secondary" type="button" id="cpSetting${camelize(id)}-button"  disabled>Toggle Button</button>
-		  <button class="btn btn-outline-secondary" type="button" id="cpSetting${camelize(id)}-key"  disabled>${macro.key||"Bind Key"}</button>
+		  <button class="btn ${macro.button&&macro.button.is(':visible')?"btn-success":"btn-outline-secondary"}" type="button" id="cpSetting${id}-button">Toggle Button</button>
+		  <button class="btn ${macro.key?"btn-success":"btn-outline-secondary"}" type="button" id="cpSetting${id}-key">${binding==macro?"binding...":macro.key||"Bind Key"}</button>
 		</div>
 	  </div></div>`);
 	  $('#cp_settingList').append(settingHTML);
-	  $(`#cpSetting${id}-button`).click(()=>{
+        var btnButton = $(`#cpSetting${id}-button`);
+        var btnKey = $(`#cpSetting${id}-key`);
+	  btnButton.click(()=>{
+            btnButton.toggleClass('btn-success');
+             btnButton.toggleClass('btn-outline-secondary');
 		  if(macro.button) {
-			macro.button.toggle()
+			macro.button.toggle();
 		  } else {
 			macro.button = createButton(macro.name,macro.cb);
 		  }
 	  });
+        btnKey.click(()=>{
+            if(binding==macro) {
+                binding=undefined;
+                btnKey.removeClass('btn-danger')
+                btnKey.addClass('btn-outline-secondary')
+                btnKey.text("Bind key");
+                return;
+            }
+            binding = macro;
+            console.log("Binding " + macro.name + "...");
+            btnKey.text("Binding...");
+            btnKey.removeClass('btn-outline-secondary')
+            btnKey.addClass('btn-danger');
+        });
 
 	}
 
-	function CPMacro(name,cb) {
-		this.name = name;
-		this.cb = cb;
-		this.button = undefined;
-		this.key = undefined;
-	}
-	
-	CPMacro.prototype.BindButton = function(color,place) {
-		this.button = createButton(this.name,this.cb,color,place);
-	}
-
-	CPMacro.prototype.BindKey = function(e){
-		this.key = e.which;
+	function createMacro(name,cb) {
+		var macro = {
+            name,
+            cb,
+            button: undefined,
+            key: undefined
+        };
+        macros.push(macro);
+        return macro;
 	}
 
 	$(document).keydown(function(e) {
-		console.log("[CP] Key",e.which);
 		if(binding) {
 			binding.key = e.which;
 			binding = undefined;
+            RefreshSettings();
 			return;
 		}
 		macros.forEach(a=>{
 			if(a.key==e.which) {
+                console.log("Triggering",a.name,"by key...")
 				a.cb();
 			}
 		})
 	});
+
+    function RefreshSettings(){
+        $('#cp_settingList').empty();
+		macros.forEach(a=>{
+			createSetting(camelize(a.name),a);
+		})
+    }
 
 
 	function Settings() {
@@ -159,7 +181,7 @@ window.addEventListener('load', function() {
 </div>
 <h2>Create Macro</h2>
 <div class="input-group" id="cpSettingCreate">
-		<input type="text" class="form-control" value="Coming Soon" aria-label="Recipient's username" aria-describedby="basic-addon2" disabled>
+		<input type="text" class="form-control" value="Coming Soon" disabled>
 		<div class="input-group-append">
 		  <button class="btn btn-outline-secondary" type="button" id="cpSettingJS-button" disabled>JS</button>
 		  <button class="btn btn-outline-secondary" type="button" id="cpSettingChat-key"  disabled>Chat</button>
@@ -167,9 +189,7 @@ window.addEventListener('load', function() {
 	  </div>
 `
 		createDialogue("Critters+ Settings",settingHTML,"");
-		macros.forEach(a=>{
-			createSetting(a.name,a);
-		})
+        RefreshSettings();
 	}
 
 	function sendJoke() {
@@ -198,17 +218,17 @@ window.addEventListener('load', function() {
 
     function nametagsToggle() {
         document.getElementById("inputMessage").value="";
-        //world.sendMessage("/nicknames"); // Turn name tags on/off
         world.stage.room.nicknames.visible = !world.stage.room.nicknames.visible;
     }
 
 	createButton('settings',Settings,'primary','beforeend','<i class="fas fa-cog"></i>');
 	createButton("Joke",sendJoke,'success','beforeend');
 	createButton("Clap",sendClap,'warning','beforeend');
-	createButton("Chat Balloons",balloonToggle,'info');
-	createButton("NameTags",nametagsToggle,'info');
-	macros.push(new CPMacro("Chat Balloons",balloonToggle));
-	macros.push(new CPMacro("NameTags",nametagsToggle));
+	createMacro("Chat Balloons",balloonToggle);
+	createMacro("NameTags",nametagsToggle);
+	createMacro("FreeItem",()=>{
+        world.sendMessage("/freeitem");
+    });
 
     var darkmodeHTML = `<div id="dmDiv" class="row justify-content-center"><span><input class="form-check-input" type="checkbox" value="" id="darkmode"><label class="form-check-label" for="darkmode" style="color:#696f75;">Dark Mode</label></span></div>`;
     chatBox.insertAdjacentHTML('afterend', darkmodeHTML);
@@ -218,7 +238,7 @@ window.addEventListener('load', function() {
         document.getElementById("darkmode").checked = true;
     }
 
-    
+
 
     function darkmodeToggle() {
         if(darkmodeBox.checked == true) {
