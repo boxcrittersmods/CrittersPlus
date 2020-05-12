@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.0.3
+// @version      2.0.4
 // @updateURL    https://github.com/boxcritters/CrittersPlus/raw/master/crittersplus.user.js
 // @downloadURL  https://github.com/boxcritters/CrittersPlus/raw/master/crittersplus.user.js
 // @description  Adds new features to BoxCritters to improve your experience!
@@ -201,6 +201,7 @@ window.addEventListener('load', function() {
 		createDialogue("Critters+ Settings",settingHTML,"");
         RefreshSettings();
 	}
+	CrittersPlus.DisplaySettings = DisplaySettings;
 
 	function sendJoke() {
         document.getElementById("inputMessage").value="";
@@ -210,6 +211,7 @@ window.addEventListener('load', function() {
             world.sendMessage(joke.p); // Send the punchline
         }, 5000 ); // end delay
     }
+	CrittersPlus.sendJoke = sendJoke;
 
     function sendClap() {
         var message = document.getElementById("inputMessage").value;
@@ -219,6 +221,7 @@ window.addEventListener('load', function() {
         console.log(message);
         world.sendMessage(message);
     }
+	CrittersPlus.sendClap = sendClap;
 
     function balloonToggle() {
         document.getElementById("inputMessage").value="";
