@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.0.5
+// @version      2.0.6
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://boxcritters.com/play/*
@@ -241,8 +241,20 @@ window.addEventListener('load', function() {
     clapMacro.ToggleButton('warning','beforeend');
 	new Macro("Chat Balloons",balloonToggle);
 	new Macro("NameTags",nametagsToggle);
-	new Macro("FreeItem",()=>{
+	new Macro("/freeitem",()=>{
         world.sendMessage("/freeitem");
+    });
+	new Macro("/pop",()=>{
+        world.sendMessage("/pop");
+    });
+	new Macro("/beep",()=>{
+        world.sendMessage("/beep");
+    });
+	new Macro("/darkmode",()=>{
+        world.sendMessage("/darkmode");
+    });
+	new Macro("/game",()=>{
+        world.sendMessage("/game");
     });
 
     var darkmodeHTML = `<div id="dmDiv" class="row justify-content-center"><span><input class="form-check-input" type="checkbox" value="" id="darkmode"><label class="form-check-label" for="darkmode" style="color:#696f75;">Dark Mode</label></span></div>`;
