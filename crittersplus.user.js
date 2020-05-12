@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.0.8
+// @version      2.0.9
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://boxcritters.com/play/*
@@ -11,7 +11,7 @@
 // @grant        none
 // ==/UserScript==
 var CrittersPlus = {};
-CrittersPlus.data = GM_getValue("CrittersPlus_data",{});
+CrittersPlus.data = GM.getValue("CrittersPlus_data",{});
 window.CrittersPlus = CrittersPlus;
 
 console.info("-----------------------------------")
@@ -174,7 +174,7 @@ window.addEventListener('load', function() {
 	});
 
 	function save() {
-		GM_setValue("CrittersPlus_data",CrittersPlus.data);
+		GM.setValue("CrittersPlus_data",CrittersPlus.data);
 	}
 
     function RefreshSettings(){
