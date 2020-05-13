@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.1.0
+// @version      2.1.1
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://boxcritters.com/play/*
@@ -249,7 +249,10 @@ window.addEventListener(
 			</div>
 		  </div>
 		`;
-			createDialogue("Critters+ Settings", settingHTML, "");
+			createDialogue("Critters+ Settings", settingHTML, `<button class="btn btn-primary" type="button" id="cpSettingSave">Save</button>`);
+			$('#cpSettingSave').click(()=>{
+				save();
+			})
 			RefreshSettings();
 		}
 		CrittersPlus.DisplaySettings = DisplaySettings;
