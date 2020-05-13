@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Critters+Dev
+// @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
 // @version      2.1.0
 // @description  Adds new features to BoxCritters to improve your experience!
