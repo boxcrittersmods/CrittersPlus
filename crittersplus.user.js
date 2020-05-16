@@ -18,7 +18,7 @@ console.info("-----------------------------------");
 
 window = unsafeWindow || window;
 var CrittersPlus = {};
-if(window.BCMacro) var BCMacro = window.BCMacro;
+var BCMacro;
 window.CrittersPlus = CrittersPlus;
 var chatBox = document.getElementsByClassName(
 	"row justify-content-center"
@@ -200,7 +200,10 @@ function DisplaySettings() {
 
 CrittersPlus.DisplaySettings = DisplaySettings;
 
-if(!window.BCMacro) {
+if(window.BCMacro){
+	 var BCMacro = window.BCMacro
+}
+else {
 	createDialogue("Macro Info",`
 	The Macros API has grown apart from Criters plus to become its own API only mod.
 	Please click the link below to install.`,
