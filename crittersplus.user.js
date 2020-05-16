@@ -1,13 +1,14 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.1.32
+// @version      2.3.5.36
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://boxcritters.com/play/*
 // @match        http://boxcritters.com/play/*
 // @icon         https://raw.githubusercontent.com/boxcritters/CrittersPlus/master/icon.png
 // @run-at       document-end
+// @grant        unsafeWindow
 // ==/UserScript==
 
 console.info("-----------------------------------");
@@ -15,10 +16,10 @@ console.info("[CRITTERS+]");
 console.info("A mod created by Slaggo, current development under TumbleGamer");
 console.info("-----------------------------------");
 
-//unsafeWindow = unsafeunsafeWindow || unsafeWindow;
+window = unsafeWindow || window;
 var CrittersPlus = {};
-if(unsafeWindow.BCMacro) var BCMacro = unsafeWindow.BCMacro;
-unsafeWindow.CrittersPlus = CrittersPlus;
+var BCMacro = window.BCMacro;
+window.CrittersPlus = CrittersPlus;
 var chatBox = document.getElementsByClassName(
 	"row justify-content-center"
 )[1];
@@ -158,7 +159,7 @@ function RefreshSettings() {
 }
 
 function DisplaySettings() {
-	//Open unsafeWindow with dropdown and stuff
+	//Open Window with dropdown and stuff
 	var settingHTML = `
 	<h2>Macros</h2>
 	<div id="cp_settingList" class="list-group">
@@ -202,13 +203,13 @@ CrittersPlus.DisplaySettings = DisplaySettings;
 if(!BCMacro) {
 	createDialogue("Macro Info",`
 	The Macros API has grown apart from Criters plus to become its own API only mod.
-	Please click the link below to install.`,
+	Please click the link below to install. <strong>Make sure to uninstall Critters+ and reinstall after you have installed the macro API as this will cause problems when installed out of order.</strong>`,
 	'<a class="btn btn-primary" href="https://boxcrittersmods.ga/mods/bcmacro-api/">Install Macro API</a>')
 }
 
 // Runs on page load
 
-unsafeWindow.addEventListener("load", async function () {
+window.addEventListener("load", async function () {
 
 	$(document).keydown(function (e) {
 		if (binding) {
