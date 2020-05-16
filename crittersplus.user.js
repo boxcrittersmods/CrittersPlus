@@ -1,13 +1,14 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.1.30
+// @version      2.3.1.31
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://boxcritters.com/play/*
 // @match        http://boxcritters.com/play/*
 // @icon         https://raw.githubusercontent.com/boxcritters/CrittersPlus/master/icon.png
 // @run-at       document-end
+// @grant 		none
 // ==/UserScript==
 
 console.info("-----------------------------------");
@@ -15,10 +16,10 @@ console.info("[CRITTERS+]");
 console.info("A mod created by Slaggo, current development under TumbleGamer");
 console.info("-----------------------------------");
 
-window = unsafeWindow || window;
+//unsafeWindow = unsafeunsafeWindow || unsafeWindow;
 var CrittersPlus = {};
-if(window.BCMacro) var BCMacro = window.BCMacro;
-window.CrittersPlus = CrittersPlus;
+if(unsafeWindow.BCMacro) var BCMacro = unsafeWindow.BCMacro;
+unsafeWindow.CrittersPlus = CrittersPlus;
 var chatBox = document.getElementsByClassName(
 	"row justify-content-center"
 )[1];
@@ -158,7 +159,7 @@ function RefreshSettings() {
 }
 
 function DisplaySettings() {
-	//Open Window with dropdown and stuff
+	//Open unsafeWindow with dropdown and stuff
 	var settingHTML = `
 	<h2>Macros</h2>
 	<div id="cp_settingList" class="list-group">
@@ -208,7 +209,7 @@ if(!BCMacro) {
 
 // Runs on page load
 
-window.addEventListener("load", async function () {
+unsafeWindow.addEventListener("load", async function () {
 
 	$(document).keydown(function (e) {
 		if (binding) {
