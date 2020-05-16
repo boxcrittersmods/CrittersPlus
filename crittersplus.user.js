@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.0.25
+// @version      2.3.0.26
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://boxcritters.com/play/*
@@ -199,6 +199,13 @@ function DisplaySettings() {
 }
 
 CrittersPlus.DisplaySettings = DisplaySettings;
+
+if(!window.BCMacro) {
+	createDialogue("Macro Info",`
+	The Macros API has grown apart from Criters plus to become its own API only mod.
+	Please click the link below to install.`,
+	'<a class="btn btn-primary" href="#">Install Macro API</a>')
+}
 
 // Runs on page load
 
