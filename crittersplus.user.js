@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.7.38
+// @version      2.3.8.39
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://play.boxcritters.com/*
@@ -90,16 +90,6 @@ if(!BCMacro) {
 // Runs on page load
 
 window.addEventListener("load", async function () {
-
-	$(document).keydown(function (e) {
-		if (binding) {
-			binding.bindKey(e);
-			binding = undefined;
-			RefreshSettings();
-			return;
-		}
-	});
-
 	function sendJoke() {
 		document.getElementById("inputMessage").value = "";
 		var joke = jokes[Math.floor(Math.random() * jokes.length)]; // Retrieve random joke from variable
