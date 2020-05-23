@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.6.37
+// @version      2.3.7.38
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://play.boxcritters.com/*
@@ -52,33 +52,6 @@ var jokes = [
 	{ j: "What kind of car does a raccoon drive?", p: "A furrari." },
 ]
 
-//Add FontAwsesome
-{
-	let head = document.head;
-	let link = document.createElement("link");
-
-	link.type = "text/css";
-	link.rel = "stylesheet";
-	link.href =
-		"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css";
-
-	head.appendChild(link);
-}
-//Add Dialogue
-{
-	let dialogueHTML = `<div id="CP_modal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header"><button type="button" class="close" data-dismiss="CP_model" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			  </button></div>
-                <div class="modal-body"></div>
-                <div class="modal-footer"></div>
-            </div>
-        </div>
-	</div>`;
-	document.body.insertAdjacentHTML("afterbegin", dialogueHTML);
-}
 
 // Code for delay function
 var delay = (function () {
@@ -106,99 +79,6 @@ function createDialogue(header, body, footer) {
 	if (footer) $("#CP_modal .modal-footer").html(footer);
 	return $("#CP_model");
 }
-
-var binding = undefined;
-function createSetting(id, macro) {
-	var settingHTML = $(`<div class="list-group-item"><div class="input-group" id="cpSetting${camelize(
-		id
-	)}">
-	<input type="text" class="form-control" value='${macro.name}' disabled>
-	<div class="input-group-append">
-	  <button class="btn ${
-		macro.button && macro.button.html && macro.button.html.is(":visible")
-			? "btn-success"
-			: "btn-outline-secondary"
-		}" type="button" id="cpSetting${id}-button">Toggle Button</button>
-	  <button class="btn ${
-		macro.key ? "btn-success" : "btn-outline-secondary"
-		}" type="button" id="cpSetting${id}-key">${
-		binding == macro ? "binding..." : macro.key || "Bind Key"
-		}</button>
-	</div>
-  </div></div>`);
-	$("#cp_settingList").append(settingHTML);
-	var btnButton = $(`#cpSetting${id}-button`);
-	var btnKey = $(`#cpSetting${id}-key`);
-	btnButton.click(() => {
-		btnButton.toggleClass("btn-success");
-		btnButton.toggleClass("btn-outline-secondary");
-		macro.toggleButton();
-	});
-	btnKey.click(() => {
-		if (binding == macro) {
-			macro.key = undefined;
-			binding = undefined;
-			btnKey.removeClass("btn-danger");
-			btnKey.addClass("btn-outline-secondary");
-			btnKey.text("Bind key");
-			return;
-		}
-		binding = macro;
-		console.log("[CP] Binding " + macro.name + "...");
-		btnKey.text("Binding...");
-		btnKey.removeClass("btn-outline-secondary");
-		btnKey.addClass("btn-danger");
-	});
-}
-
-function RefreshSettings() {
-	$("#cp_settingList").empty();
-	(BCMacro.macros||[]).forEach((a) => {
-		createSetting(camelize(a.name), a);
-	});
-}
-
-function DisplaySettings() {
-	//Open Window with dropdown and stuff
-	var settingHTML = `
-	<h2>Macros</h2>
-	<div id="cp_settingList" class="list-group">
-</div>
-<h2>Create Macro</h2>
-<div class="input-group" id="cpSettingCreate">
-	<input type="text" id="cpSettingName" class="form-control" placeholder="Name">
-	<div class="input-group-append">
-		<input type="text" id="cpSettingContent" class="form-control" placeholder="Action/Text">
-	  <button class="btn btn-outline-secondary" type="button" id="cpSettingJS">JS</button>
-	  <button class="btn btn-outline-secondary" type="button" id="cpSettingChat">Chat</button>
-	</div>
-  </div>
-`;
-	createDialogue("Critters+ Settings", settingHTML, '<button class="btn btn-danger" type="button" id="cpSettingReset">Reset</button><button class="btn btn-primary" type="button" id="cpSettingSave">Save</button>');
-	var newName = $('#cpSettingName');
-	var newContent = $('#cpSettingContent');
-	$('#cpSettingJS').click(() => {
-		BCMacro.macros = BCMacro.macros||[];
-		var cb = new Function(newContent.val());
-		new BCMacro(newName.val(),cb);
-		RefreshSettings();
-	})
-	$('#cpSettingChat').click(() => {
-		BCMacro.macros = BCMacro.macros||[];
-		var cb = new Function("world.sendMessage("+JSON.stringify(newContent.val())+")");
-		new BCMacro(newName.val(),cb);
-		RefreshSettings();
-	})
-	$('#cpSettingSave').click(() => {
-		BCMacro.save();
-	})
-	$('#cpSettingReset').click(() => {
-		BCMacro.reset();
-	})
-	RefreshSettings();
-}
-
-CrittersPlus.DisplaySettings = DisplaySettings;
 
 if(!BCMacro) {
 	createDialogue("Macro Info",`
@@ -243,14 +123,6 @@ window.addEventListener("load", async function () {
 
 	if (BCMacro.INITIAL_SETUP) {
 		console.log("[CP] Setting up basic macros...");
-		var settingsMacro = new BCMacro("settings", ()=>{
-			CrittersPlus.DisplaySettings()
-		});
-		settingsMacro.toggleButton(
-			"primary",
-			"beforeend",
-			'<i class="fas fa-cog"></i>'
-		);
 		var jokeMacro = new BCMacro("Joke", CrittersPlus.sendJoke);
 		jokeMacro.toggleButton("success", "beforeend");
 		var clapMacro = new BCMacro("Clap", CrittersPlus.sendClap);
