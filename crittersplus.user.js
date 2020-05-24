@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.8.39
+// @version      2.3.9.40
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://play.boxcritters.com/*
@@ -93,9 +93,9 @@ window.addEventListener("load", async function () {
 	function sendJoke() {
 		document.getElementById("inputMessage").value = "";
 		var joke = jokes[Math.floor(Math.random() * jokes.length)]; // Retrieve random joke from variable
-		world.sendMessage(joke.j); // Send the first part of the joke
+		BCMacro.sendMessage(joke.j); // Send the first part of the joke
 		delay(function () {
-			world.sendMessage(joke.p); // Send the punchline
+			BCMacro.sendMessage(joke.p); // Send the punchline
 		}, 5000); // end delay
 	}
 
@@ -124,19 +124,19 @@ window.addEventListener("load", async function () {
 			world.stage.room.nicknames.visible ^= true;
 		});
 		new BCMacro("freeitem", () => {
-			world.sendMessage("/freeitem");
+			BCMacro.sendMessage("/freeitem");
 		});
 		new BCMacro("pop", () => {
-			world.sendMessage("/pop");
+			BCMacro.sendMessage("/pop");
 		});
 		new BCMacro("beep", () => {
-			world.sendMessage("/beep");
+			BCMacro.sendMessage("/beep");
 		});
 		new BCMacro("darkmode", () => {
-			world.sendMessage("/darkmode");
+			BCMacro.sendMessage("/darkmode");
 		});
 		new BCMacro("game", () => {
-			world.sendMessage("/game");
+			BCMacro.sendMessage("/game");
 		});
 		BCMacro.save();
 	}
