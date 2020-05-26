@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.12.43
+// @version      2.3.13.44
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://play.boxcritters.com/*
@@ -116,29 +116,31 @@ window.addEventListener("load", async function () {
 	console.log("[CP] Setting up macros...");
 	var jokeMacro = new BCMacro("Joke", CrittersPlus.sendJoke,true);
 	jokeMacro.toggleButton("success", "beforeend");
+	setupModMacro(jokeMacro);
 	var clapMacro = new BCMacro("Clap", CrittersPlus.sendClap,true);
 	clapMacro.toggleButton("warning", "beforeend");
-	new BCMacro("Chat Balloons", ()=>{
+	setupModMacro(clapMacro);
+	setupModMacro(new BCMacro("Chat Balloons", ()=>{
 		world.stage.room.balloons.visible ^=true;
-	},true);
-	new BCMacro("NameTags", ()=>{
+	},true));
+	setupModMacro(new BCMacro("NameTags", ()=>{
 		world.stage.room.nicknames.visible ^= true;
-	},true);
-	new BCMacro("freeitem", () => {
+	},true));
+	setupModMacro(new BCMacro("freeitem", () => {
 		BCMacro.sendMessage("/freeitem");
-	},true);
-	new BCMacro("pop", () => {
+	},true));
+	setupModMacro(new BCMacro("pop", () => {
 		BCMacro.sendMessage("/pop");
-	},true);
-	new BCMacro("beep", () => {
+	},true));
+	setupModMacro(new BCMacro("beep", () => {
 		BCMacro.sendMessage("/beep");
-	},true);
-	new BCMacro("darkmode", () => {
+	},true));
+	setupModMacro(new BCMacro("darkmode", () => {
 		BCMacro.sendMessage("/darkmode");
-	},true);
-	new BCMacro("game", () => {
+	},true));
+	setupModMacro(new BCMacro("game", () => {
 		BCMacro.sendMessage("/game");
-	},true);
+	},true));
 
 	//-------------------------------------------------------------------------------------------------------------------------
 
