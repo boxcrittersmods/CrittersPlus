@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.11.42
+// @version      2.3.12.43
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://play.boxcritters.com/*
@@ -113,35 +113,32 @@ window.addEventListener("load", async function () {
 	CrittersPlus.sendJoke = sendJoke;
 	CrittersPlus.sendClap = sendClap;
 
-	if (BCMacro.INITIAL_SETUP) {
-		console.log("[CP] Setting up basic macros...");
-		var jokeMacro = new BCMacro("Joke", CrittersPlus.sendJoke);
-		jokeMacro.toggleButton("success", "beforeend");
-		var clapMacro = new BCMacro("Clap", CrittersPlus.sendClap);
-		clapMacro.toggleButton("warning", "beforeend");
-		new BCMacro("Chat Balloons", ()=>{
-			world.stage.room.balloons.visible ^=true;
-		});
-		new BCMacro("NameTags", ()=>{
-			world.stage.room.nicknames.visible ^= true;
-		});
-		new BCMacro("freeitem", () => {
-			BCMacro.sendMessage("/freeitem");
-		});
-		new BCMacro("pop", () => {
-			BCMacro.sendMessage("/pop");
-		});
-		new BCMacro("beep", () => {
-			BCMacro.sendMessage("/beep");
-		});
-		new BCMacro("darkmode", () => {
-			BCMacro.sendMessage("/darkmode");
-		});
-		new BCMacro("game", () => {
-			BCMacro.sendMessage("/game");
-		});
-		BCMacro.save();
-	}
+	console.log("[CP] Setting up macros...");
+	var jokeMacro = new BCMacro("Joke", CrittersPlus.sendJoke,true);
+	jokeMacro.toggleButton("success", "beforeend");
+	var clapMacro = new BCMacro("Clap", CrittersPlus.sendClap,true);
+	clapMacro.toggleButton("warning", "beforeend");
+	new BCMacro("Chat Balloons", ()=>{
+		world.stage.room.balloons.visible ^=true;
+	},true);
+	new BCMacro("NameTags", ()=>{
+		world.stage.room.nicknames.visible ^= true;
+	},true);
+	new BCMacro("freeitem", () => {
+		BCMacro.sendMessage("/freeitem");
+	},true);
+	new BCMacro("pop", () => {
+		BCMacro.sendMessage("/pop");
+	},true);
+	new BCMacro("beep", () => {
+		BCMacro.sendMessage("/beep");
+	},true);
+	new BCMacro("darkmode", () => {
+		BCMacro.sendMessage("/darkmode");
+	},true);
+	new BCMacro("game", () => {
+		BCMacro.sendMessage("/game");
+	},true);
 
 	//-------------------------------------------------------------------------------------------------------------------------
 
