@@ -1,13 +1,14 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.13.44
+// @version      2.3.14.45
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://play.boxcritters.com/*
 // @match        http://play.boxcritters.com/*
-// @require      https://code.jquery.com/jquery-3.5.1.min.js
-// @require      https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js
+// @require      https://code.jquery.com/jquery-3.5.1.slim.min.js
+// @require      https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.0/umd/popper.min.js
+// @require      https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js
 // @icon         https://raw.githubusercontent.com/boxcritters/CrittersPlus/master/icon.png
 // @run-at       document-end
 // @grant        unsafeWindow
@@ -72,7 +73,6 @@ function camelize(str) {
 }
 
 
-
 function createDialogue(header, body, footer) {
 	$("#CP_modal").modal();
 	$("#CP_modal").modal("show");
@@ -83,6 +83,20 @@ function createDialogue(header, body, footer) {
 }
 
 if(!BCMacro) {
+	{
+		let dialogueHTML = `<div id="CP_modal" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header"><button type="button" class="close" data-dismiss="CP_model" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button></div>
+					<div class="modal-body"></div>
+					<div class="modal-footer"></div>
+				</div>
+			</div>
+		</div>`;
+		document.body.insertAdjacentHTML("afterbegin", dialogueHTML);
+	}
 	createDialogue("Macro Info",`
 	The Macros API has grown apart from Criters plus to become its own API only mod.
 	Please click the link below to install. <strong>Make sure to uninstall Critters+ and reinstall after you have installed the macro API as this will cause problems when installed out of order.</strong>`,
@@ -112,43 +126,45 @@ window.addEventListener("load", async function () {
 
 	CrittersPlus.sendJoke = sendJoke;
 	CrittersPlus.sendClap = sendClap;
-
+{
 	console.log("[CP] Setting up macros...");
 	var jokeMacro = new BCMacro("Joke", CrittersPlus.sendJoke,true);
 	jokeMacro.toggleButton("success", "beforeend");
-	setupModMacro(jokeMacro);
+	jokeMacro.setupMod();
 
 	var clapMacro = new BCMacro("Clap", CrittersPlus.sendClap,true);
 	clapMacro.toggleButton("warning", "beforeend");
-	setupModMacro(clapMacro);
+	clapMacro.setupMod();
 
-	setupModMacro(new BCMacro("Chat Balloons", ()=>{
+	new BCMacro("Chat Balloons", ()=>{
 		world.stage.room.balloons.visible ^=true;
-	},true));
+	},true).setupMod();
 
-	setupModMacro(new BCMacro("NameTags", ()=>{
+	new BCMacro("NameTags", ()=>{
 		world.stage.room.nicknames.visible ^= true;
-	},true));
+	},true).setupMod();
 
-	setupModMacro(new BCMacro("freeitem", () => {
+	new BCMacro("freeitem", () => {
 		BCMacro.sendMessage("/freeitem");
-	},true));
+	},true).setupMod();
 
-	setupModMacro(new BCMacro("pop", () => {
+	new BCMacro("pop", () => {
 		BCMacro.sendMessage("/pop");
-	},true));
+	},true).setupMod();
 
-	setupModMacro(new BCMacro("beep", () => {
+	new BCMacro("beep", () => {
 		BCMacro.sendMessage("/beep");
-	},true));
+	},true).setupMod();
 
-	setupModMacro(new BCMacro("darkmode", () => {
+	new BCMacro("darkmode", () => {
 		BCMacro.sendMessage("/darkmode");
-	},true));
-	
-	setupModMacro(new BCMacro("game", () => {
+	},true).setupMod();
+
+	new BCMacro("game", () => {
 		BCMacro.sendMessage("/game");
-	},true));
+	},true).setupMod();
+	BCMacro.save();
+}
 
 	//-------------------------------------------------------------------------------------------------------------------------
 
