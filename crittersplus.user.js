@@ -117,27 +117,35 @@ window.addEventListener("load", async function () {
 	var jokeMacro = new BCMacro("Joke", CrittersPlus.sendJoke,true);
 	jokeMacro.toggleButton("success", "beforeend");
 	setupModMacro(jokeMacro);
+
 	var clapMacro = new BCMacro("Clap", CrittersPlus.sendClap,true);
 	clapMacro.toggleButton("warning", "beforeend");
 	setupModMacro(clapMacro);
+
 	setupModMacro(new BCMacro("Chat Balloons", ()=>{
 		world.stage.room.balloons.visible ^=true;
 	},true));
+
 	setupModMacro(new BCMacro("NameTags", ()=>{
 		world.stage.room.nicknames.visible ^= true;
 	},true));
+
 	setupModMacro(new BCMacro("freeitem", () => {
 		BCMacro.sendMessage("/freeitem");
 	},true));
+
 	setupModMacro(new BCMacro("pop", () => {
 		BCMacro.sendMessage("/pop");
 	},true));
+
 	setupModMacro(new BCMacro("beep", () => {
 		BCMacro.sendMessage("/beep");
 	},true));
+
 	setupModMacro(new BCMacro("darkmode", () => {
 		BCMacro.sendMessage("/darkmode");
 	},true));
+	
 	setupModMacro(new BCMacro("game", () => {
 		BCMacro.sendMessage("/game");
 	},true));
