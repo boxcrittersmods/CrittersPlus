@@ -10,7 +10,7 @@
 // @require      https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.0/umd/popper.min.js
 // @require      https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js
 // @icon         https://raw.githubusercontent.com/boxcritters/CrittersPlus/master/icon.png
-// @updateURL    https://github.com/boxcritters/CrittersPlus/raw/master/crittersplus.user.js
+// @updateURL    https://raw.githubusercontent.com/boxcritters/CrittersPlus/raw/master/crittersplus.user.js
 // @run-at       document-end
 // @grant        unsafeWindow
 // ==/UserScript==
