@@ -74,15 +74,6 @@ function camelize(str) {
 }
 
 
-function createDialogue(header, body, footer) {
-	$("#CP_modal").modal();
-	$("#CP_modal").modal("show");
-	if (header) $("#CP_modal .modal-header").html(header);
-	if (body) $("#CP_modal .modal-body").html(body);
-	if (footer) $("#CP_modal .modal-footer").html(footer);
-	return $("#CP_model");
-}
-
 if(!BCMacro) {
 	{
 		let dialogueHTML = `<div id="CP_modal" class="modal fade" tabindex="-1" role="dialog">
@@ -97,6 +88,15 @@ if(!BCMacro) {
 			</div>
 		</div>`;
 		document.body.insertAdjacentHTML("afterbegin", dialogueHTML);
+	}
+
+	function createDialogue(header, body, footer) {
+		$("#CP_modal").modal();
+		$("#CP_modal").modal("show");
+		if (header) $("#CP_modal .modal-header").html(header);
+		if (body) $("#CP_modal .modal-body").html(body);
+		if (footer) $("#CP_modal .modal-footer").html(footer);
+		return $("#CP_model");
 	}
 	createDialogue("Macro Info",`
 	The Macros API has grown apart from Criters plus to become its own API only mod.
