@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.14.45
+// @version      2.3.15.46
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://play.boxcritters.com/*
@@ -10,6 +10,8 @@
 // @require      https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.0/umd/popper.min.js
 // @require      https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js
 // @icon         https://raw.githubusercontent.com/boxcritters/CrittersPlus/master/icon.png
+// @downloadURL  https://cdn.boxcrittersmods.ga/CrittersPlus/master/crittersplus.user.js
+// @updateURL    https://github.com/boxcritters/CrittersPlus/raw/master/crittersplus.user.js
 // @run-at       document-end
 // @grant        unsafeWindow
 // ==/UserScript==
