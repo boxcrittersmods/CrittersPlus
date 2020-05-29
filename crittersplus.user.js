@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.16.47
+// @version      2.3.17.48
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://play.boxcritters.com/*
@@ -137,31 +137,31 @@ window.addEventListener("load", async function () {
 	clapMacro.toggleButton("warning", "beforeend");
 	clapMacro.setupMod();
 
-	new BCMacro("Chat Balloons", ()=>{
+	new BCMacro("Chat Balloons", _=>{
 		world.stage.room.balloons.visible ^=true;
 	},true).setupMod();
 
-	new BCMacro("NameTags", ()=>{
+	new BCMacro("NameTags", _=>{
 		world.stage.room.nicknames.visible ^= true;
 	},true).setupMod();
 
-	new BCMacro("freeitem", () => {
+	new BCMacro("freeitem", _=> {
 		BCMacro.sendMessage("/freeitem");
 	},true).setupMod();
 
-	new BCMacro("pop", () => {
+	new BCMacro("pop", _=> {
 		BCMacro.sendMessage("/pop");
 	},true).setupMod();
 
-	new BCMacro("beep", () => {
+	new BCMacro("beep", _=> {
 		BCMacro.sendMessage("/beep");
 	},true).setupMod();
 
-	new BCMacro("darkmode", () => {
+	new BCMacro("darkmode", _=> {
 		BCMacro.sendMessage("/darkmode");
 	},true).setupMod();
 
-	new BCMacro("game", () => {
+	new BCMacro("game", _=> {
 		BCMacro.sendMessage("/game");
 	},true).setupMod();
 	BCMacro.save();
