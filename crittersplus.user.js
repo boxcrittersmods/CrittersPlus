@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.17.48
+// @version      2.3.18.49
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://play.boxcritters.com/*
@@ -164,7 +164,6 @@ window.addEventListener("load", async function () {
 	new BCMacro("game", _=> {
 		BCMacro.sendMessage("/game");
 	},true).setupMod();
-	BCMacro.save();
 }
 
 	//-------------------------------------------------------------------------------------------------------------------------
