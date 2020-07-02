@@ -1,11 +1,15 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.18.49
+// @version      2.3.20.51
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
-// @match        https://play.boxcritters.com/*
-// @match        http://play.boxcritters.com/*
+// @match        https://boxcritters.com/play/
+// @match        https://boxcritters.com/play/?*
+// @match        https://boxcritters.com/play/#*
+// @match        https://boxcritters.com/play/index.html
+// @match        https://boxcritters.com/play/index.html?*
+// @match        https://boxcritters.com/play/index.html#*
 // @require      https://code.jquery.com/jquery-3.5.1.slim.min.js
 // @require      https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.0/umd/popper.min.js
 // @require      https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js
