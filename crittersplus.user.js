@@ -63,37 +63,28 @@ function camelize(str) {
 	});
 }
 
-
 if (!BCMacro) {
 	document.body.insertAdjacentHTML("afterbegin", `<div id="CP_modal" class="modal fade" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="CP_model" aria-label="Close">
+					Macro Info
+					<button type="button" class="close" data-dismiss="CP_modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body"></div>
-				<div class="modal-footer"></div>
+				<div class="modal-body">
+					The Macro API has grown apart from Critters+ to become its own API only mod. Please click the link below to install.<br>
+					<strong>Make sure to uninstall Critters+ and reinstall after you have installed the Macro API as this will cause problems when installed out of order.</strong>
+				</div>
+				<div class="modal-footer">
+					<a class="btn btn-primary" href="https://boxcrittersmods.ga/mods/bcmacro-api/">Install Macro API</a>
+				</div>
 			</div>
 		</div>
 	</div>`);
-
-	function createDialogue(header, body, footer) {
-		$("#CP_modal").modal();
-		$("#CP_modal").modal("show");
-		$("#CP_modal .modal-header").html(header);
-		$("#CP_modal .modal-body").html(body);
-		$("#CP_modal .modal-footer").html(footer);
-		return $("#CP_modal");
-	}
-	createDialogue("Macro Info",
-		`The Macro API has grown apart from Critters+ to become its own API only mod. Please click the link below to install.<br>
-<strong>Make sure to uninstall Critters+ and reinstall after you have installed the Macro API as this will cause problems when installed out of order.</strong>`,
-		'<a class="btn btn-primary" href="https://boxcrittersmods.ga/mods/bcmacro-api/">Install Macro API</a>');
+	$('#CP_modal').modal();
 }
-
-// Runs on page load
 
 window.addEventListener("load", async function () {
 	function sendJoke() {
@@ -180,6 +171,4 @@ window.addEventListener("load", async function () {
 	let raib = document.getElementById("redeemallitemsbtn");
 	if (raib)
 		raib.addEventListener("click", raib, false);
-},
-	false
-);
+}, false);
