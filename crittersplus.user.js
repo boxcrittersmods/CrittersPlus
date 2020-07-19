@@ -85,7 +85,6 @@ if (!BCMacro) {
 		if (header) $("#CP_modal .modal-header").html(header);
 		if (body) $("#CP_modal .modal-body").html(body);
 		if (footer) $("#CP_modal .modal-footer").html(footer);
-		return $("#CP_model");
 	}
 	createDialogue("Macro Info",
 		`The Macros API has grown apart from Critters+ to become its own API only mod.
