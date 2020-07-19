@@ -19,10 +19,10 @@
 // @grant        unsafeWindow
 // ==/UserScript==
 
-console.info("-----------------------------------");
-console.info("[CRITTERS+]");
-console.info("A mod created by Slaggo, current development under TumbleGamer");
-console.info("-----------------------------------");
+console.info(`-----------------------------------
+[CRITTERS+]
+A mod created by Slaggo, current development under TumbleGamer
+-----------------------------------`);
 
 window = unsafeWindow || window;
 var CrittersPlus = {};
