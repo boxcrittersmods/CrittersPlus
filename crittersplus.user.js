@@ -47,13 +47,14 @@ var jokes = [
 
 
 // Code for delay function
-var delay = (function () {
-	var timer = 0;
-	return function (callback, ms) {
+var delay;
+{
+	let timer = 0;
+	delay = function (callback, ms) {
 		clearTimeout(timer);
 		timer = setTimeout(callback, ms);
 	};
-})();
+}
 
 function camelize(str) {
 	return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function (match, index) {
