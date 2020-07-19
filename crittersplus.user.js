@@ -168,7 +168,7 @@ window.addEventListener("load", async function () {
 		}
 	}
 
-	let raib = document.getElementById("redeemallitemsbtn");
-	if (raib)
-		raib.addEventListener("click", raib, false);
+	//let raib = document.getElementById("redeemallitemsbtn");
+	//if (raib)
+	//	raib.addEventListener("click", redeemAllItems, false); // this function doesn't even exist
 }, false);
