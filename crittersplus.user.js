@@ -3,7 +3,7 @@
 // @namespace    http://discord.gg/G3PTYPy
 // @version      2.3.20.51
 // @description  Adds new features to BoxCritters to improve your experience!
-// @author       slaggo,TumbleGamer
+// @author       slaggo, TumbleGamer
 // @match        https://boxcritters.com/play/
 // @match        https://boxcritters.com/play/?*
 // @match        https://boxcritters.com/play/#*
