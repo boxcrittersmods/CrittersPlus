@@ -45,17 +45,6 @@ var jokes = [
 	{ j: "What kind of car does a raccoon drive?", p: "A furrari." },
 ];
 
-
-// Code for delay function
-var delay;
-{
-	let timer = 0;
-	delay = function (callback, ms) {
-		clearTimeout(timer);
-		timer = setTimeout(callback, ms);
-	};
-}
-
 function camelize(str) {
 	return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function (match, index) {
 		if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
@@ -86,14 +75,23 @@ if (!BCMacro) {
 	$('#CP_modal').modal();
 }
 
+var delay;
+{
+	let timeout;
+	delay = function (callback, ms) {
+		clearTimeout(timeout);
+		timeout = setTimeout(callback, ms);
+	};
+}
+
 window.addEventListener("load", async function () {
 	function sendJoke() {
 		document.getElementById("inputMessage").value = "";
-		var joke = jokes[Math.floor(Math.random() * jokes.length)]; // Retrieve random joke from variable
-		BCMacro.sendMessage(joke.j); // Send the first part of the joke
+		let joke = jokes[Math.floor(Math.random() * jokes.length)];
+		BCMacro.sendMessage(joke.j);
 		delay(function () {
-			BCMacro.sendMessage(joke.p); // Send the punchline
-		}, 5000); // end delay
+			BCMacro.sendMessage(joke.p);
+		}, 5000);
 	}
 
 	function sendClap() {
@@ -145,21 +143,17 @@ window.addEventListener("load", async function () {
 		}, true).setupMod();
 	}
 
-	//-------------------------------------------------------------------------------------------------------------------------
-
 	chatBox.insertAdjacentHTML("afterend",
 		`<div id="dmDiv" class="row justify-content-center"><span>
 			<input class="form-check-input" type="checkbox" value="" id="darkmode">
 			<label class="form-check-label" for="darkmode" style="color:#696f75;">Dark Mode</label>
-		</span></div>`); // darkmode html
+		</span></div>`);
 
-	if (localStorage.getItem("theme") == "dark") {
-		document.body.style = "background-color: rgb(16, 21, 31); transition: .5s;";
+	if (localStorage.getItem("theme") == "dark")
 		document.getElementById("darkmode").checked = true;
-	}
 
 	function darkmodeToggle() {
-		if (darkmodeBox.checked == true) {
+		if (darkmodeBox.checked) {
 			localStorage.setItem("theme", "dark");
 			document.body.style = "background-color: rgb(16, 21, 31); transition: .5s;";
 		} else {
