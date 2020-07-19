@@ -58,7 +58,7 @@ var jokes = [
 	},
 	{ j: "How do snails make important calls?", p: "On shell phones." },
 	{ j: "What kind of car does a raccoon drive?", p: "A furrari." },
-]
+];
 
 
 // Code for delay function
@@ -78,7 +78,7 @@ function camelize(str) {
 }
 
 
-if(!BCMacro) {
+if (!BCMacro) {
 	{
 		let dialogueHTML = `<div id="CP_modal" class="modal fade" tabindex="-1" role="dialog">
 			<div class="modal-dialog" role="document">
@@ -102,10 +102,10 @@ if(!BCMacro) {
 		if (footer) $("#CP_modal .modal-footer").html(footer);
 		return $("#CP_model");
 	}
-	createDialogue("Macro Info",`
+	createDialogue("Macro Info", `
 	The Macros API has grown apart from Criters plus to become its own API only mod.
 	Please click the link below to install. <strong>Make sure to uninstall Critters+ and reinstall after you have installed the macro API as this will cause problems when installed out of order.</strong>`,
-	'<a class="btn btn-primary" href="https://boxcrittersmods.ga/mods/bcmacro-api/">Install Macro API</a>')
+		'<a class="btn btn-primary" href="https://boxcrittersmods.ga/mods/bcmacro-api/">Install Macro API</a>');
 }
 
 // Runs on page load
@@ -131,44 +131,44 @@ window.addEventListener("load", async function () {
 
 	CrittersPlus.sendJoke = sendJoke;
 	CrittersPlus.sendClap = sendClap;
-{
-	console.log("[CP] Setting up macros...");
-	var jokeMacro = new BCMacro("Joke", CrittersPlus.sendJoke,true);
-	jokeMacro.toggleButton("success", "beforeend");
-	jokeMacro.setupMod();
+	{
+		console.log("[CP] Setting up macros...");
+		var jokeMacro = new BCMacro("Joke", CrittersPlus.sendJoke, true);
+		jokeMacro.toggleButton("success", "beforeend");
+		jokeMacro.setupMod();
 
-	var clapMacro = new BCMacro("Clap", CrittersPlus.sendClap,true);
-	clapMacro.toggleButton("warning", "beforeend");
-	clapMacro.setupMod();
+		var clapMacro = new BCMacro("Clap", CrittersPlus.sendClap, true);
+		clapMacro.toggleButton("warning", "beforeend");
+		clapMacro.setupMod();
 
-	new BCMacro("Chat Balloons", _=>{
-		world.stage.room.balloons.visible ^=true;
-	},true).setupMod();
+		new BCMacro("Chat Balloons", _ => {
+			world.stage.room.balloons.visible ^= true;
+		}, true).setupMod();
 
-	new BCMacro("NameTags", _=>{
-		world.stage.room.nicknames.visible ^= true;
-	},true).setupMod();
+		new BCMacro("NameTags", _ => {
+			world.stage.room.nicknames.visible ^= true;
+		}, true).setupMod();
 
-	new BCMacro("freeitem", _=> {
-		BCMacro.sendMessage("/freeitem");
-	},true).setupMod();
+		new BCMacro("freeitem", _ => {
+			BCMacro.sendMessage("/freeitem");
+		}, true).setupMod();
 
-	new BCMacro("pop", _=> {
-		BCMacro.sendMessage("/pop");
-	},true).setupMod();
+		new BCMacro("pop", _ => {
+			BCMacro.sendMessage("/pop");
+		}, true).setupMod();
 
-	new BCMacro("beep", _=> {
-		BCMacro.sendMessage("/beep");
-	},true).setupMod();
+		new BCMacro("beep", _ => {
+			BCMacro.sendMessage("/beep");
+		}, true).setupMod();
 
-	new BCMacro("darkmode", _=> {
-		BCMacro.sendMessage("/darkmode");
-	},true).setupMod();
+		new BCMacro("darkmode", _ => {
+			BCMacro.sendMessage("/darkmode");
+		}, true).setupMod();
 
-	new BCMacro("game", _=> {
-		BCMacro.sendMessage("/game");
-	},true).setupMod();
-}
+		new BCMacro("game", _ => {
+			BCMacro.sendMessage("/game");
+		}, true).setupMod();
+	}
 
 	//-------------------------------------------------------------------------------------------------------------------------
 
