@@ -154,17 +154,17 @@ window.addEventListener("load", async function () {
 		</span></div>`); // darkmode html
 
 	if (localStorage.getItem("theme") == "dark") {
-		document.body.style = "background-color:rgb(16, 21, 31);transition:0.5s;";
+		document.body.style = "background-color: rgb(16, 21, 31); transition: .5s;";
 		document.getElementById("darkmode").checked = true;
 	}
 
 	function darkmodeToggle() {
 		if (darkmodeBox.checked == true) {
 			localStorage.setItem("theme", "dark");
-			document.body.style = "background-color:rgb(16, 21, 31);transition:0.5s;";
+			document.body.style = "background-color: rgb(16, 21, 31); transition: .5s;";
 		} else {
 			localStorage.setItem("theme", "light");
-			document.body.style = "background-color:#f7f7f7;transition:0.5s;";
+			document.body.style = "background-color: #f7f7f7; transition: .5s;";
 		}
 	}
 
