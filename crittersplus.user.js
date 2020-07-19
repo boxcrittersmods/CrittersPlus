@@ -85,25 +85,23 @@ var delay;
 }
 
 window.addEventListener("load", async function () {
-	function sendJoke() {
+	CrittersPlus.sendJoke = function () {
 		document.getElementById("inputMessage").value = "";
 		let joke = jokes[Math.floor(Math.random() * jokes.length)];
 		BCMacro.sendMessage(joke.j);
 		delay(function () {
 			BCMacro.sendMessage(joke.p);
 		}, 5000);
-	}
+	};
 
-	function sendClap() {
+	CrittersPlus.sendClap = function () {
 		var message = document.getElementById("inputMessage").value;
 		document.getElementById("inputMessage").value = "";
 		message = `👏 ${message.replace(" ", " 👏 ")} 👏`;
 		console.log("[CP]", message);
 		world.sendMessage(message);
-	}
+	};
 
-	CrittersPlus.sendJoke = sendJoke;
-	CrittersPlus.sendClap = sendClap;
 	{
 		console.log("[CP] Setting up macros...");
 		var jokeMacro = new BCMacro("Joke", CrittersPlus.sendJoke, true);
