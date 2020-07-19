@@ -82,13 +82,14 @@ if (!BCMacro) {
 	function createDialogue(header, body, footer) {
 		$("#CP_modal").modal();
 		$("#CP_modal").modal("show");
-		if (header) $("#CP_modal .modal-header").html(header);
-		if (body) $("#CP_modal .modal-body").html(body);
-		if (footer) $("#CP_modal .modal-footer").html(footer);
+		$("#CP_modal .modal-header").html(header);
+		$("#CP_modal .modal-body").html(body);
+		$("#CP_modal .modal-footer").html(footer);
+		return $("#CP_modal");
 	}
 	createDialogue("Macro Info",
-		`The Macros API has grown apart from Critters+ to become its own API only mod.
-Please click the link below to install. <strong>Make sure to uninstall Critters+ and reinstall after you have installed the macro API as this will cause problems when installed out of order.</strong>`,
+		`The Macro API has grown apart from Critters+ to become its own API only mod. Please click the link below to install.<br>
+<strong>Make sure to uninstall Critters+ and reinstall after you have installed the Macro API as this will cause problems when installed out of order.</strong>`,
 		'<a class="btn btn-primary" href="https://boxcrittersmods.ga/mods/bcmacro-api/">Install Macro API</a>');
 }
 
