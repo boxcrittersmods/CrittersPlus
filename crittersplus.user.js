@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.20.51
+// @version      2.3.21.52
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo, TumbleGamer
 // @match        https://boxcritters.com/play/
@@ -86,17 +86,17 @@ var delay;
 
 window.addEventListener("load", async function () {
 	CrittersPlus.sendJoke = function () {
-		document.getElementById("inputMessage").value = "";
-		let joke = jokes[Math.floor(Math.random() * jokes.length)];
-		BCMacro.sendMessage(joke.j);
+		document.getElementById("message").value = "";
+		var joke = jokes[Math.floor(Math.random() * jokes.length)]; // Retrieve random joke from variable
+		BCMacro.sendMessage(joke.j); // Send the first part of the joke
 		delay(function () {
 			BCMacro.sendMessage(joke.p);
 		}, 5000);
 	};
 
 	CrittersPlus.sendClap = function () {
-		var message = document.getElementById("inputMessage").value;
-		document.getElementById("inputMessage").value = "";
+		var message = document.getElementById("message").value;
+		document.getElementById("message").value = "";
 		message = `👏 ${message.replace(" ", " 👏 ")} 👏`;
 		console.log("[CP]", message);
 		world.sendMessage(message);
