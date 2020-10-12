@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.21.52
+// @version      2.3.22.53
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://boxcritters.com/play/
@@ -26,7 +26,7 @@ console.info("-----------------------------------");
 
 window = unsafeWindow || window;
 var CrittersPlus = {};
-var BCMacro = window.BCMacro;
+var BCMacros = window.BCMacros;
 window.CrittersPlus = CrittersPlus;
 var chatBox = document.getElementsByClassName(
 	"row justify-content-center"
@@ -78,7 +78,7 @@ function camelize(str) {
 }
 
 
-if(!BCMacro) {
+if (!BCMacros) {
 	{
 		let dialogueHTML = `<div id="CP_modal" class="modal fade" tabindex="-1" role="dialog">
 			<div class="modal-dialog" role="document">
@@ -102,10 +102,10 @@ if(!BCMacro) {
 		if (footer) $("#CP_modal .modal-footer").html(footer);
 		return $("#CP_model");
 	}
-	createDialogue("Macro Info",`
+	createDialogue("Macro Info", `
 	The Macros API has grown apart from Criters plus to become its own API only mod.
 	Please click the link below to install. <strong>Make sure to uninstall Critters+ and reinstall after you have installed the macro API as this will cause problems when installed out of order.</strong>`,
-	'<a class="btn btn-primary" href="https://boxcrittersmods.ga/mods/bcmacro-api/">Install Macro API</a>')
+		'<a class="btn btn-primary" href="https://boxcrittersmods.ga/mods/bcmacro-api/">Install Macro API</a>')
 }
 
 // Runs on page load
@@ -131,44 +131,80 @@ window.addEventListener("load", async function () {
 
 	CrittersPlus.sendJoke = sendJoke;
 	CrittersPlus.sendClap = sendClap;
-{
-	console.log("[CP] Setting up macros...");
-	var jokeMacro = new BCMacro("Joke", CrittersPlus.sendJoke,true);
-	jokeMacro.toggleButton("success", "beforeend");
-	jokeMacro.setupMod();
+	{
+		console.log("[CP] Setting up macros...");
+		var cpMacros = BCMacros.CreateMacroPack({
+			name: "Critters Plus"
+		})
+		cpMacros.createMacro({
+			name: "Joke",
+			action: CrittersPlus.sendJoke,
+			button: {
+				color: "#28a245"
+			}
+		})
+		/*cpMacros.createMacro({
+			name: "Clap",
+			action: CrittersPlus.sendClap,
+			button: {
+				color: "#ffc107"
+			}
+		})*/
+		cpMacros.createMacro({
+			name: "Chat Balloons",
+			action: _ => {
+				world.stage.room.balloons.visible ^= true;
+			},
+			button: {}
+		})
+		cpMacros.createMacro({
+			name: "NameTags",
+			action: _ => {
+				world.stage.room.nicknames.visible ^= true;
+			},
+			button: {}
+		})
 
-	var clapMacro = new BCMacro("Clap", CrittersPlus.sendClap,true);
-	clapMacro.toggleButton("warning", "beforeend");
-	clapMacro.setupMod();
+		cpMacros.createMacro({
+			name: "freeitem",
+			action: _ => {
+				BCMacro.sendMessage("/freeitem");
+			},
+			button: {}
+		})
 
-	new BCMacro("Chat Balloons", _=>{
-		world.stage.room.balloons.visible ^=true;
-	},true).setupMod();
+		cpMacros.createMacro({
+			name: "pop",
+			action: _ => {
+				BCMacro.sendMessage("/pop");
+			},
+			button: {}
+		})
 
-	new BCMacro("NameTags", _=>{
-		world.stage.room.nicknames.visible ^= true;
-	},true).setupMod();
+		cpMacros.createMacro({
+			name: "beep",
+			action: _ => {
+				BCMacro.sendMessage("/beep");
+			},
+			button: {}
+		})
 
-	new BCMacro("freeitem", _=> {
-		BCMacro.sendMessage("/freeitem");
-	},true).setupMod();
+		cpMacros.createMacro({
+			name: "darkmode",
+			action: _ => {
+				BCMacro.sendMessage("/darkmode");
+			},
+			button: {}
+		})
 
-	new BCMacro("pop", _=> {
-		BCMacro.sendMessage("/pop");
-	},true).setupMod();
-
-	new BCMacro("beep", _=> {
-		BCMacro.sendMessage("/beep");
-	},true).setupMod();
-
-	new BCMacro("darkmode", _=> {
-		BCMacro.sendMessage("/darkmode");
-	},true).setupMod();
-
-	new BCMacro("game", _=> {
-		BCMacro.sendMessage("/game");
-	},true).setupMod();
-}
+		cpMacros.createMacro({
+			name: "game",
+			action: _ => {
+				BCMacro.sendMessage("/game");
+			},
+			button: {}
+		})
+	}
 
 	//-------------------------------------------------------------------------------------------------------------------------
 
