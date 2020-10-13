@@ -111,7 +111,6 @@ if (!BCMacros) {
 
 // Runs on page load
 
-window.addEventListener("load", async function () {
 	function sendJoke() {
 		document.getElementById("message").value = "";
 		var joke = jokes[Math.floor(Math.random() * jokes.length)]; // Retrieve random joke from variable
@@ -210,7 +209,7 @@ window.addEventListener("load", async function () {
 
 	//-------------------------------------------------------------------------------------------------------------------------
 
-	var darkmodeHTML = `<div id="dmDiv" class="row justify-content-center"><span><input class="form-check-input" type="checkbox" value="" id="darkmode"><label class="form-check-label" for="darkmode" style="color:#696f75;">Dark Mode</label></span></div>`;
+	/*var darkmodeHTML = `<div id="dmDiv" class="row justify-content-center"><span><input class="form-check-input" type="checkbox" value="" id="darkmode"><label class="form-check-label" for="darkmode" style="color:#696f75;">Dark Mode</label></span></div>`;
 	chatBox.insertAdjacentHTML("afterend", darkmodeHTML);
 
 	if (localStorage.getItem("theme") == "dark") {
@@ -232,7 +231,4 @@ window.addEventListener("load", async function () {
 	var redeemallitemsBtn = document.querySelector("#redeemallitemsbtn");
 	if (redeemallitemsBtn) {
 		redeemallitemsBtn.addEventListener("click", redeemallitems, false);
-	}
-},
-	false
-);
+	}*/
