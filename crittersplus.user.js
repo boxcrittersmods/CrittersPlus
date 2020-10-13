@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.23.55
+// @version      2.3.23.56
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://boxcritters.com/play/
@@ -102,10 +102,11 @@ if (!BCMacros) {
 		if (footer) $("#CP_modal .modal-footer").html(footer);
 		return $("#CP_model");
 	}
-	createDialogue("Macro Info", `
-	The Macros API has grown apart from Criters plus to become its own API only mod.
+	createDialogue("Macro Info", /*`
+	/*The Macros API has grown apart from Criters plus to become its own API only mod.
 	Please click the link below to install. <strong>Make sure to uninstall Critters+ and reinstall after you have installed the macro API as this will cause problems when installed out of order.</strong>`,
-		'<a class="btn btn-primary" href="https://boxcrittersmods.ga/mods/bcmacro-api/">Install Macro API</a>')
+		'<a class="btn btn-primary" href="https://boxcrittersmods.ga/mods/bcmacro-api/">Install Macro API</a>'*/`
+		There was a error loading BCMacro mod`)
 }
 
 // Runs on page load
