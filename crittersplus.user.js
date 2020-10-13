@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.22.53
+// @version      2.3.23.55
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://boxcritters.com/play/
@@ -114,9 +114,9 @@ window.addEventListener("load", async function () {
 	function sendJoke() {
 		document.getElementById("message").value = "";
 		var joke = jokes[Math.floor(Math.random() * jokes.length)]; // Retrieve random joke from variable
-		BCMacro.sendMessage(joke.j); // Send the first part of the joke
+		BCMacros.sendMessage(joke.j); // Send the first part of the joke
 		delay(function () {
-			BCMacro.sendMessage(joke.p); // Send the punchline
+			BCMacros.sendMessage(joke.p); // Send the punchline
 		}, 5000); // end delay
 	}
 
@@ -126,7 +126,7 @@ window.addEventListener("load", async function () {
 		message = message.split(" ").join(" 👏 ");
 		message = "👏" + message + "👏";
 		console.log("[CP]", message);
-		world.sendMessage(message);
+		BCMacro.sendMessage(message);
 	}
 
 	CrittersPlus.sendJoke = sendJoke;
@@ -140,7 +140,8 @@ window.addEventListener("load", async function () {
 			name: "Joke",
 			action: CrittersPlus.sendJoke,
 			button: {
-				color: "#28a245"
+				color:"warning"
+				//color: "#28a245"
 			}
 		})
 		/*cpMacros.createMacro({
@@ -168,7 +169,7 @@ window.addEventListener("load", async function () {
 		cpMacros.createMacro({
 			name: "freeitem",
 			action: _ => {
-				BCMacro.sendMessage("/freeitem");
+				BCMacros.sendMessage("/freeitem");
 			},
 			button: {}
 		})
@@ -176,7 +177,7 @@ window.addEventListener("load", async function () {
 		cpMacros.createMacro({
 			name: "pop",
 			action: _ => {
-				BCMacro.sendMessage("/pop");
+				BCMacros.sendMessage("/pop");
 			},
 			button: {}
 		})
@@ -184,7 +185,7 @@ window.addEventListener("load", async function () {
 		cpMacros.createMacro({
 			name: "beep",
 			action: _ => {
-				BCMacro.sendMessage("/beep");
+				BCMacros.sendMessage("/beep");
 			},
 			button: {}
 		})
@@ -192,7 +193,7 @@ window.addEventListener("load", async function () {
 		cpMacros.createMacro({
 			name: "darkmode",
 			action: _ => {
-				BCMacro.sendMessage("/darkmode");
+				BCMacros.sendMessage("/darkmode");
 			},
 			button: {}
 		})
@@ -200,7 +201,7 @@ window.addEventListener("load", async function () {
 		cpMacros.createMacro({
 			name: "game",
 			action: _ => {
-				BCMacro.sendMessage("/game");
+				BCMacros.sendMessage("/game");
 			},
 			button: {}
 		})
