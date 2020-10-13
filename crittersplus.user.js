@@ -106,7 +106,7 @@ if (!BCMacros) {
 	/*The Macros API has grown apart from Criters plus to become its own API only mod.
 	Please click the link below to install. <strong>Make sure to uninstall Critters+ and reinstall after you have installed the macro API as this will cause problems when installed out of order.</strong>`,
 		'<a class="btn btn-primary" href="https://boxcrittersmods.ga/mods/bcmacro-api/">Install Macro API</a>'*/`
-		There was a error loading BCMacro mod`)
+		There was a error loading BCMacro mod`,'<a class="btn btn-primary" href="https://boxcrittersmods.ga/mods/bcmacro-api/">Install Macro API</a>')
 }
 
 // Runs on page load
