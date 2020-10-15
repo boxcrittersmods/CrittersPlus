@@ -22,6 +22,7 @@
 	'use strict';
 	window = unsafeWindow || window;
 	var mod = BCModUtils.InitialiseMod({
+		id:"CrittersPlus",
 		name: "Critters+",
 		abriv: "CP",
 		author: "Slaggo and TumbleGamer"
