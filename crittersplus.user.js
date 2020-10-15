@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.26.59
+// @version      2.3.27.60
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://boxcritters.com/play/
@@ -14,13 +14,12 @@
 // @require      https://github.com/tumble1999/native-modals/raw/master/native-modal.js
 // @icon         https://raw.githubusercontent.com/boxcritters/CrittersPlus/master/icon.png
 // @updateURL    https://github.com/boxcritters/CrittersPlus/raw/master/crittersplus.user.js
-// @run-at       document-end
-// @grant        unsafeWindow
+// @run-at       document-start
+// @grant        none
 // ==/UserScript==
 
 (function () {
 	'use strict';
-	window = unsafeWindow || window;
 	const mod = BCModUtils.InitialiseMod({
 		id:"CrittersPlus",
 		name: "Critters+",
