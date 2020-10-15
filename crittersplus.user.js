@@ -21,7 +21,7 @@
 (function () {
 	'use strict';
 	window = unsafeWindow || window;
-	var mod = BCModUtils.InitialiseMod({
+	const mod = BCModUtils.InitialiseMod({
 		id:"CrittersPlus",
 		name: "Critters+",
 		abriv: "CP",
