@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.27.60
+// @version      2.3.28.61
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://boxcritters.com/play/
@@ -11,7 +11,8 @@
 // @match        https://boxcritters.com/play/index.html?*
 // @match        https://boxcritters.com/play/index.html#*
 // @require      https://github.com/tumble1999/mod-utils/raw/master/mod-utils.js
-// @require      https://github.com/tumble1999/native-modals/raw/master/native-modal.js
+// @require      https://github.com/tumble1999/popper/raw/master/popper.js
+// @require      file:///E:/dev/boxcritters/mods/BCMacroAPI/bcmacro-api.user.js
 // @icon         https://raw.githubusercontent.com/boxcritters/CrittersPlus/master/icon.png
 // @updateURL    https://github.com/boxcritters/CrittersPlus/raw/master/crittersplus.user.js
 // @run-at       document-start
@@ -68,9 +69,9 @@
 	})();
 
 	if (!BCMacros) {
-		var modal = new BSModal();
+		var modal = new Popper();
 		modal.setContent({
-			header: `Macro Info` + BSModal.closeButton,
+			header: `Macro Info` + Popper.closeButton,
 			body: `The Macros API has grown apart from Criters plus to become its own API only CrittersPlus.
 		Please click the link below to install. <strong>Make sure to uninstall Critters+ and reinstall after you have installed the macro API as this will cause problems when installed out of order.</strong>`,
 			footer: `<a class="btn btn-primary" href="https://boxcrittersmods.ga/mods/bcmacro-api/">Install Macro API</a>`
