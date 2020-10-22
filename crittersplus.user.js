@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.32.154
+// @version      2.3.33.155
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://boxcritters.com/play/
@@ -14,7 +14,7 @@
 // @require      https://github.com/tumble1999/modial/raw/master/modial.js
 // @icon         https://raw.githubusercontent.com/boxcritters/CrittersPlus/master/icon.png
 // @updateURL    https://github.com/boxcritters/CrittersPlus/raw/master/crittersplus.user.js
-// @run-at       document-ready
+// @run-at       document-start
 // @grant        none
 // ==/UserScript==
 
