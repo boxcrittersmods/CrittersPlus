@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.30.63
+// @version      2.3.32.154
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://boxcritters.com/play/
@@ -12,10 +12,9 @@
 // @match        https://boxcritters.com/play/index.html#*
 // @require      https://github.com/tumble1999/mod-utils/raw/master/mod-utils.js
 // @require      https://github.com/tumble1999/modial/raw/master/modial.js
-// @require      file:///E:/dev/boxcritters/mods/BCMacroAPI/bcmacro-api.user.js
 // @icon         https://raw.githubusercontent.com/boxcritters/CrittersPlus/master/icon.png
 // @updateURL    https://github.com/boxcritters/CrittersPlus/raw/master/crittersplus.user.js
-// @run-at       document-start
+// @run-at       document-ready
 // @grant        none
 // ==/UserScript==
 
@@ -68,19 +67,6 @@
 		};
 	})();
 
-	if (!BCMacros) {
-		let modal = new Modial();
-		modal.setContent({
-			header: `Macro Info` + Modial.closeButton,
-			body: `The Macros API has grown apart from Criters plus to become its own API only CrittersPlus.
-		Please click the link below to install. <strong>Make sure to uninstall Critters+ and reinstall after you have installed the macro API as this will cause problems when installed out of order.</strong>`,
-			footer: `<a class="btn btn-primary" href="https://boxcrittersmods.ga/mods/bcmacro-api/">Install Macro API</a>`
-		});
-		modal.show();
-	}
-
-	// Runs on page load
-
 	function sendJoke() {
 		document.getElementById("message").value = "";
 		let joke = jokes[Math.floor(Math.random() * jokes.length)]; // Retrieve random joke from variable
@@ -101,7 +87,18 @@
 
 	CrittersPlus.sendJoke = sendJoke;
 	CrittersPlus.sendClap = sendClap;
-	if (BCMacros) {
+
+
+	if (typeof BCMacros == "undefined") {
+		let modal = new Modial();
+		modal.setContent({
+			header: `Macro Info` + Modial.closeButton,
+			body: `The Macros API has grown apart from Criters plus to become its own API only CrittersPlus.
+		Please click the link below to install. <strong>Make sure to uninstall Critters+ and reinstall after you have installed the macro API as this will cause problems when installed out of order.</strong>`,
+			footer: `<a class="btn btn-primary" href="https://boxcrittersmods.ga/mods/bcmacro-api/">Install Macro API</a>`
+		});
+		modal.show();
+	} else {
 		CrittersPlus.log("Setting up macros...");
 		let cpMacros = BCMacros.CreateMacroPack({
 			name: "Critters Plus"
@@ -144,13 +141,6 @@
 			button: {}
 		});
 
-		cpMacros.createMacro({
-			name: "beep",
-			action: _ => {
-				BCMacros.sendMessage("/beep");
-			},
-			button: {}
-		});
 
 		cpMacros.createMacro({
 			name: "darkmode",
@@ -161,9 +151,25 @@
 		});
 
 		cpMacros.createMacro({
-			name: "game",
+			name: "NavMesh",
 			action: _ => {
-				BCMacros.sendMessage("/game");
+				BCMacros.sendMessage("/navmesh");
+			},
+			button: {}
+		});
+
+		cpMacros.createMacro({
+			name: "Treasure",
+			action: _ => {
+				BCMacros.sendMessage("/treasure");
+			},
+			button: {}
+		});
+
+		cpMacros.createMacro({
+			name: "Mute Game",
+			action: _ => {
+				createjs.Sound.muted ^= true;
 			},
 			button: {}
 		});
