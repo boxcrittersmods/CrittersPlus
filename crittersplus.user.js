@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Critters+
 // @namespace    http://discord.gg/G3PTYPy
-// @version      2.3.28.61
+// @version      2.3.29.62
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://boxcritters.com/play/
@@ -11,7 +11,7 @@
 // @match        https://boxcritters.com/play/index.html?*
 // @match        https://boxcritters.com/play/index.html#*
 // @require      https://github.com/tumble1999/mod-utils/raw/master/mod-utils.js
-// @require      https://github.com/tumble1999/popper/raw/master/popper.js
+// @require      https://github.com/tumble1999/modial/raw/master/modial.js
 // @require      file:///E:/dev/boxcritters/mods/BCMacroAPI/bcmacro-api.user.js
 // @icon         https://raw.githubusercontent.com/boxcritters/CrittersPlus/master/icon.png
 // @updateURL    https://github.com/boxcritters/CrittersPlus/raw/master/crittersplus.user.js
@@ -22,15 +22,15 @@
 (function () {
 	'use strict';
 	const CrittersPlus = new TumbleMod({
-		id:"CrittersPlus",
+		id: "CrittersPlus",
 		name: "Critters+",
 		abriv: "CP",
 		author: "Slaggo and TumbleGamer"
-	})
-	var BCMacros = window.BCMacros;
+	});
+	let BCMacros = window.BCMacros;
 	window.CrittersPlus = CrittersPlus;
 
-	var jokes = [
+	let jokes = [
 		{
 			j: "What do you call a hamster in a tophat?",
 			p: "Abrahamster Lincoln!",
@@ -56,11 +56,11 @@
 		},
 		{ j: "How do snails make important calls?", p: "On shell phones." },
 		{ j: "What kind of car does a raccoon drive?", p: "A furrari." },
-	]
+	];
 
 
 	// Code for delay function
-	var delay = (function () {
+	let delay = (function () {
 		let timer = 0;
 		return function (callback, ms) {
 			clearTimeout(timer);
@@ -69,9 +69,9 @@
 	})();
 
 	if (!BCMacros) {
-		var modal = new Popper();
+		let modal = new Modial();
 		modal.setContent({
-			header: `Macro Info` + Popper.closeButton,
+			header: `Macro Info` + Modial.closeButton,
 			body: `The Macros API has grown apart from Criters plus to become its own API only CrittersPlus.
 		Please click the link below to install. <strong>Make sure to uninstall Critters+ and reinstall after you have installed the macro API as this will cause problems when installed out of order.</strong>`,
 			footer: `<a class="btn btn-primary" href="https://boxcrittersmods.ga/mods/bcmacro-api/">Install Macro API</a>`
@@ -103,30 +103,30 @@
 	CrittersPlus.sendClap = sendClap;
 	if (BCMacros) {
 		CrittersPlus.log("Setting up macros...");
-		var cpMacros = BCMacros.CreateMacroPack({
+		let cpMacros = BCMacros.CreateMacroPack({
 			name: "Critters Plus"
-		})
+		});
 		cpMacros.createMacro({
 			name: "Joke",
 			action: CrittersPlus.sendJoke,
 			button: {
 				color: "warning"
 			}
-		})
+		});
 		cpMacros.createMacro({
 			name: "Chat Balloons",
 			action: _ => {
 				world.stage.room.balloons.visible ^= true;
 			},
 			button: {}
-		})
+		});
 		cpMacros.createMacro({
 			name: "NameTags",
 			action: _ => {
 				world.stage.room.nicknames.visible ^= true;
 			},
 			button: {}
-		})
+		});
 
 		cpMacros.createMacro({
 			name: "freeitem",
@@ -134,7 +134,7 @@
 				BCMacros.sendMessage("/freeitem");
 			},
 			button: {}
-		})
+		});
 
 		cpMacros.createMacro({
 			name: "pop",
@@ -142,7 +142,7 @@
 				BCMacros.sendMessage("/pop");
 			},
 			button: {}
-		})
+		});
 
 		cpMacros.createMacro({
 			name: "beep",
@@ -150,7 +150,7 @@
 				BCMacros.sendMessage("/beep");
 			},
 			button: {}
-		})
+		});
 
 		cpMacros.createMacro({
 			name: "darkmode",
@@ -158,7 +158,7 @@
 				BCMacros.sendMessage("/darkmode");
 			},
 			button: {}
-		})
+		});
 
 		cpMacros.createMacro({
 			name: "game",
@@ -166,12 +166,12 @@
 				BCMacros.sendMessage("/game");
 			},
 			button: {}
-		})
+		});
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------------
 
-	/*var darkmodeHTML = `<div id="dmDiv" class="row justify-content-center"><span><input class="form-check-input" type="checkbox" value="" id="darkmode"><label class="form-check-label" for="darkmode" style="color:#696f75;">Dark Mode</label></span></div>`;
+	/*let darkmodeHTML = `<div id="dmDiv" class="row justify-content-center"><span><input class="form-check-input" type="checkbox" value="" id="darkmode"><label class="form-check-label" for="darkmode" style="color:#696f75;">Dark Mode</label></span></div>`;
 	chatBox.insertAdjacentHTML("afterend", darkmodeHTML);
 	
 	if (localStorage.getItem("theme") == "dark") {
@@ -190,7 +190,7 @@
 		}
 	}
 	
-	var redeemallitemsBtn = document.querySelector("#redeemallitemsbtn");
+	let redeemallitemsBtn = document.querySelector("#redeemallitemsbtn");
 	if (redeemallitemsBtn) {
 		redeemallitemsBtn.addEventListener("click", redeemallitems, false);
 	}*/
