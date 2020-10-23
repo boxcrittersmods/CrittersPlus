@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name         Critters+
-// @namespace    http://discord.gg/G3PTYPy
+// @namespace    https://boxcrittersmods.ga/authors/slaggo/
+// @supportURL   http://discord.gg/D2ZpRUW
 // @version      2.3.33.155
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
