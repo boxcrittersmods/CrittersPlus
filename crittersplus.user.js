@@ -2,7 +2,7 @@
 // @name         Critters+
 // @namespace    https://boxcrittersmods.ga/authors/slaggo/
 // @supportURL   http://discord.gg/D2ZpRUW
-// @version      2.3.33.155
+// @version      2.4.0.156
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
 // @match        https://boxcritters.com/play/
@@ -59,6 +59,8 @@
 	];
 
 
+
+
 	// Code for delay function
 	let delay = (function () {
 		let timer = 0;
@@ -88,7 +90,6 @@
 
 	CrittersPlus.sendJoke = sendJoke;
 	CrittersPlus.sendClap = sendClap;
-
 
 	if (typeof BCMacros == "undefined") {
 		let modal = new Modial();
@@ -174,7 +175,118 @@
 			},
 			button: {}
 		});
-	}
+
+		cpMacros.createMacro({
+			name: "Hello",
+			action: _ => {
+				BCMacros.sendMessage("Hello");
+			},
+			key: "KeyH"
+		});
+		cpMacros.createMacro({
+			name: "Good Bye",
+			action: _ => {
+				BCMacros.sendMessage("Good Bye");
+			},
+			key: "KeyB"
+		});
+		cpMacros.createMacro({
+			name: "Ok",
+			action: _ => {
+				BCMacros.sendMessage("OK");
+			},
+			key: "KeyO"
+		});
+		cpMacros.createMacro({
+			name: "Yes",
+			action: _ => {
+				BCMacros.sendMessage("Yes");
+			},
+			key: "KeyY"
+		});
+		cpMacros.createMacro({
+			name: "No",
+			action: _ => {
+				BCMacros.sendMessage("No");
+			},
+			key: "KeyN"
+		});
+
+		let emotes = {
+			laugh: { name: "Laughing face", key: "Digit1" },
+			smile: { name: "Smiley", key: "Digit2" },
+			happy: { name: "Straight face", key: "Digit3" },
+			sad: { name: "Frown", key: "Digit4" },
+			awe: { name: "Surprise", key: "Digit5" },
+			cheeky: { name: "Sticking out tongue", key: "Digit6" },
+			thumbs_up: { name: "Wink", key: "Digit7" },
+			sick: { name: "Green sickly face", key: "Digit8" },
+			angry: { name: "Red angry face", key: "Digit9" },
+			upset: { name: "Sad face", key: "Digit0" },
+			daze: { name: "Crooked face", key: "KeyU" },
+			coffee: { name: "Coffee Cup", key: "KeyC" },
+			gg: { name: "Game", key: "KeyG" },
+			// laugh: {name: "Popcorn", key: "KeyO"},
+			// laugh: {name: "Pizza", key: "KeyZ"},
+			// laugh: {name: "Ice Cream", key: "KeyQ"},
+			// laugh: {name: "Cake", key: "KeyK"},
+			// laugh: {name: "Good Luck", key: "KeyL"},
+			idea: { name: "Light Bulb", key: "KeyB" },
+			// laugh: {name: "Heart", key: "KeyH"},
+			// laugh: {name: "Flower", key: "KeyF"}
+		};
+
+		cpMacros.createMacro({
+			name: "Emote Chord",
+			action: null,
+			key: "KeyE"
+		});
+
+		for (const emote in emotes) {
+			let { name, key } = emotes[emote];
+
+			cpMacros.createMacro({
+				name,
+				action: _ => {
+					if (BCMacros.isChording(["emoteChord"])) {
+						world.emote(emote);
+					}
+				},
+				key
+			});
+		}
+
+		cpMacros.createMacro({
+			name: "Punctuation Chord",
+			action: null,
+			key: "ShiftLeft"
+		});
+
+		cpMacros.createMacro({
+			name: "Punctuation Chord2",
+			action: null,
+			key: "ShiftRight"
+		});
+
+		cpMacros.createMacro({
+			name: "Exclamation Point",
+			action: _ => {
+				if (BCMacros.isChording(["punctuationChord"]) || BCMacros.isChording(["punctuationChord2"])) {
+					BCMacros.sendMessage("!");
+				}
+			},
+			key: "Digit1"
+		});
+		cpMacros.createMacro({
+			name: "Question Mark",
+			action: _ => {
+				if (BCMacros.isChording(["punctuationChord"]) || BCMacros.isChording(["punctuationChord2"])) {
+					world.emote("confused");
+				}
+			},
+			key: "Slash"
+		});
+	};
 
 	//-------------------------------------------------------------------------------------------------------------------------
 
