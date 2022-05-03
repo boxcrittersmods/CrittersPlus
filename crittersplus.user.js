@@ -93,8 +93,8 @@
 	if (typeof BCMacros == "undefined") {
 		let modal = new Modial();
 		modal.setContent({
-			header: `Macro Info` + Modial.closeButton,
-			body: `The Macros API has grown apart from Criters plus to become its own API only CrittersPlus.
+			header: `Macro Info`,
+			body: `The Macros API has grown apart from Critters plus to become its own API only CrittersPlus.
 		Please click the link below to install. <strong>Make sure to uninstall Critters+ and reinstall after you have installed the macro API as this will cause problems when installed out of order.</strong>`,
 			footer: `<a class="btn btn-primary" href="https://boxcrittersmods.ga/mods/bcmacro-api/">Install Macro API</a>`
 		});
@@ -180,12 +180,12 @@
 
 	/*let darkmodeHTML = `<div id="dmDiv" class="row justify-content-center"><span><input class="form-check-input" type="checkbox" value="" id="darkmode"><label class="form-check-label" for="darkmode" style="color:#696f75;">Dark Mode</label></span></div>`;
 	chatBox.insertAdjacentHTML("afterend", darkmodeHTML);
-	
+
 	if (localStorage.getItem("theme") == "dark") {
 		document.body.style = "background-color:rgb(16, 21, 31);transition:0.5s;";
 		document.getElementById("darkmode").checked = true;
 	}
-	
+
 	function darkmodeToggle() {
 		if (darkmodeBox.checked == true) {
 			localStorage.setItem("theme", "dark");
@@ -196,7 +196,7 @@
 			document.body.style = "background-color:#f7f7f7;transition:0.5s;";
 		}
 	}
-	
+
 	let redeemallitemsBtn = document.querySelector("#redeemallitemsbtn");
 	if (redeemallitemsBtn) {
 		redeemallitemsBtn.addEventListener("click", redeemallitems, false);
