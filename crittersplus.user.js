@@ -2,33 +2,40 @@
 // @name         Critters+
 // @namespace    https://boxcrittersmods.ga/authors/slaggo/
 // @supportURL   http://discord.gg/D2ZpRUW
-// @version      2.4.0.156
+// @version      2.4.1.157
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo,TumbleGamer
+// @require      https://github.com/tumble1999/mod-utils/raw/master/mod-utils.js
+// @require      https://github.com/tumble1999/modial/raw/master/modial.js
+// @require      https://github.com/SArpnt/ctrl-panel/raw/master/script.user.js
+// @require      https://github.com/tumble1999/critterguration/raw/master/critterguration.user.js
+// @require      https://github.com/boxcrittersmods/bcmacros/raw/master/bcmacro-api.user.js
+// @grant        GM_getValue
+// @grant        GM_setValue
+// @grant        GM_deleteValue
 // @match        https://boxcritters.com/play/
 // @match        https://boxcritters.com/play/?*
 // @match        https://boxcritters.com/play/#*
 // @match        https://boxcritters.com/play/index.html
 // @match        https://boxcritters.com/play/index.html?*
 // @match        https://boxcritters.com/play/index.html#*
-// @require      https://github.com/tumble1999/mod-utils/raw/master/mod-utils.js
-// @require      https://github.com/tumble1999/modial/raw/master/modial.js
 // @icon         https://raw.githubusercontent.com/boxcritters/CrittersPlus/master/icon.png
-// @updateURL    https://github.com/boxcritters/CrittersPlus/raw/master/crittersplus.user.js
 // @run-at       document-start
-// @grant        none
 // ==/UserScript==
 
 (function () {
 	'use strict';
+
+	const uWindow = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
+
 	const CrittersPlus = new TumbleMod({
 		id: "CrittersPlus",
 		name: "Critters+",
 		abriv: "CP",
 		author: "Slaggo and TumbleGamer"
 	});
-	let BCMacros = window.BCMacros;
-	window.CrittersPlus = CrittersPlus;
+
+	uWindow.CrittersPlus = CrittersPlus;
 
 	let jokes = [
 		{
@@ -91,202 +98,202 @@
 	CrittersPlus.sendJoke = sendJoke;
 	CrittersPlus.sendClap = sendClap;
 
-	if (typeof BCMacros == "undefined") {
-		let modal = new Modial();
-		modal.setContent({
-			header: `Macro Info`,
-			body: `The Macros API has grown apart from Critters plus to become its own API only CrittersPlus.
-		Please click the link below to install. <strong>Make sure to uninstall Critters+ and reinstall after you have installed the macro API as this will cause problems when installed out of order.</strong>`,
-			footer: `<a class="btn btn-primary" href="https://boxcrittersmods.ga/mods/bcmacro-api/">Install Macro API</a>`
-		});
-		modal.show();
-	} else {
-		CrittersPlus.log("Setting up macros...");
-		let cpMacros = BCMacros.CreateMacroPack({
-			name: "Critters Plus"
-		});
-		cpMacros.createMacro({
-			name: "Joke",
-			action: CrittersPlus.sendJoke,
-			button: {
-				color: "warning"
-			}
-		});
-		cpMacros.createMacro({
-			name: "Chat Balloons",
-			action: _ => {
-				world.stage.room.balloons.visible ^= true;
-			},
-			button: {}
-		});
-		cpMacros.createMacro({
-			name: "NameTags",
-			action: _ => {
-				world.stage.room.nicknames.visible ^= true;
-			},
-			button: {}
-		});
-
-		cpMacros.createMacro({
-			name: "freeitem",
-			action: _ => {
-				BCMacros.sendMessage("/freeitem");
-			},
-			button: {}
-		});
-
-		cpMacros.createMacro({
-			name: "pop",
-			action: _ => {
-				BCMacros.sendMessage("/pop");
-			},
-			button: {}
-		});
-
-
-		cpMacros.createMacro({
-			name: "darkmode",
-			action: _ => {
-				BCMacros.sendMessage("/darkmode");
-			},
-			button: {}
-		});
-
-		cpMacros.createMacro({
-			name: "NavMesh",
-			action: _ => {
-				BCMacros.sendMessage("/navmesh");
-			},
-			button: {}
-		});
-
-		cpMacros.createMacro({
-			name: "Treasure",
-			action: _ => {
-				BCMacros.sendMessage("/treasure");
-			},
-			button: {}
-		});
-
-		cpMacros.createMacro({
-			name: "Mute Game",
-			action: _ => {
-				createjs.Sound.muted ^= true;
-			},
-			button: {}
-		});
-
-		cpMacros.createMacro({
-			name: "Hello",
-			action: _ => {
-				BCMacros.sendMessage("Hello");
-			},
-			key: "KeyH"
-		});
-		cpMacros.createMacro({
-			name: "Good Bye",
-			action: _ => {
-				BCMacros.sendMessage("Good Bye");
-			},
-			key: "KeyB"
-		});
-		cpMacros.createMacro({
-			name: "Ok",
-			action: _ => {
-				BCMacros.sendMessage("OK");
-			},
-			key: "KeyO"
-		});
-		cpMacros.createMacro({
-			name: "Yes",
-			action: _ => {
-				BCMacros.sendMessage("Yes");
-			},
-			key: "KeyY"
-		});
-		cpMacros.createMacro({
-			name: "No",
-			action: _ => {
-				BCMacros.sendMessage("No");
-			},
-			key: "KeyN"
-		});
-
-		let emotes = {
-			laugh: { name: "Laughing face", key: "Digit1" },
-			smile: { name: "Smiley", key: "Digit2" },
-			happy: { name: "Straight face", key: "Digit3" },
-			sad: { name: "Frown", key: "Digit4" },
-			awe: { name: "Surprise", key: "Digit5" },
-			cheeky: { name: "Sticking out tongue", key: "Digit6" },
-			thumbs_up: { name: "Wink", key: "Digit7" },
-			sick: { name: "Green sickly face", key: "Digit8" },
-			angry: { name: "Red angry face", key: "Digit9" },
-			upset: { name: "Sad face", key: "Digit0" },
-			daze: { name: "Crooked face", key: "KeyU" },
-			coffee: { name: "Coffee Cup", key: "KeyC" },
-			gg: { name: "Game", key: "KeyG" },
-			// laugh: {name: "Popcorn", key: "KeyO"},
-			// laugh: {name: "Pizza", key: "KeyZ"},
-			// laugh: {name: "Ice Cream", key: "KeyQ"},
-			// laugh: {name: "Cake", key: "KeyK"},
-			// laugh: {name: "Good Luck", key: "KeyL"},
-			idea: { name: "Light Bulb", key: "KeyB" },
-			// laugh: {name: "Heart", key: "KeyH"},
-			// laugh: {name: "Flower", key: "KeyF"}
-		};
-
-		cpMacros.createMacro({
-			name: "Emote Chord",
-			action: null,
-			key: "KeyE"
-		});
-
-		for (const emote in emotes) {
-			let { name, key } = emotes[emote];
-
-			cpMacros.createMacro({
-				name,
-				action: _ => {
-					if (BCMacros.isChording(["emoteChord"])) {
-						world.emote(emote);
-					}
-				},
-				key
-			});
+	// if (typeof BCMacros == "undefined") {
+	// 	let modal = new Modial();
+	// 	modal.setContent({
+	// 		header: `Macro Info`,
+	// 		body: `The Macros API has grown apart from Critters plus to become its own API only CrittersPlus.
+	// 	Please click the link below to install. <strong>Make sure to uninstall Critters+ and reinstall after you have installed the macro API as this will cause problems when installed out of order.</strong>`,
+	// 		footer: `<a class="btn btn-primary" href="https://bcmc.ga/mods/bcmacro-api/">Install Macro API</a>`
+	// 	});
+	// 	modal.show();
+	// } else {
+	CrittersPlus.log("Setting up macros...");
+	let cpMacros = BCMacros.CreateMacroPack({
+		name: "Critters Plus"
+	});
+	cpMacros.createMacro({
+		name: "Joke",
+		action: CrittersPlus.sendJoke,
+		button: {
+			color: "warning"
 		}
+	});
+	cpMacros.createMacro({
+		name: "Chat Balloons",
+		action: _ => {
+			world.stage.room.balloons.visible ^= true;
+		},
+		button: {}
+	});
+	cpMacros.createMacro({
+		name: "NameTags",
+		action: _ => {
+			world.stage.room.nicknames.visible ^= true;
+		},
+		button: {}
+	});
 
-		cpMacros.createMacro({
-			name: "Punctuation Chord",
-			action: null,
-			key: "ShiftLeft"
-		});
+	cpMacros.createMacro({
+		name: "freeitem",
+		action: _ => {
+			BCMacros.sendMessage("/freeitem");
+		},
+		button: {}
+	});
 
-		cpMacros.createMacro({
-			name: "Punctuation Chord2",
-			action: null,
-			key: "ShiftRight"
-		});
+	cpMacros.createMacro({
+		name: "pop",
+		action: _ => {
+			BCMacros.sendMessage("/pop");
+		},
+		button: {}
+	});
 
-		cpMacros.createMacro({
-			name: "Exclamation Point",
-			action: _ => {
-				if (BCMacros.isChording(["punctuationChord"]) || BCMacros.isChording(["punctuationChord2"])) {
-					BCMacros.sendMessage("!");
-				}
-			},
-			key: "Digit1"
-		});
-		cpMacros.createMacro({
-			name: "Question Mark",
-			action: _ => {
-				if (BCMacros.isChording(["punctuationChord"]) || BCMacros.isChording(["punctuationChord2"])) {
-					world.emote("confused");
-				}
-			},
-			key: "Slash"
-		});
+
+	cpMacros.createMacro({
+		name: "darkmode",
+		action: _ => {
+			BCMacros.sendMessage("/darkmode");
+		},
+		button: {}
+	});
+
+	cpMacros.createMacro({
+		name: "NavMesh",
+		action: _ => {
+			BCMacros.sendMessage("/navmesh");
+		},
+		button: {}
+	});
+
+	cpMacros.createMacro({
+		name: "Treasure",
+		action: _ => {
+			BCMacros.sendMessage("/treasure");
+		},
+		button: {}
+	});
+
+	cpMacros.createMacro({
+		name: "Mute Game",
+		action: _ => {
+			createjs.Sound.muted ^= true;
+		},
+		button: {}
+	});
+
+	cpMacros.createMacro({
+		name: "Hello",
+		action: _ => {
+			BCMacros.sendMessage("Hello");
+		},
+		key: "KeyH"
+	});
+	cpMacros.createMacro({
+		name: "Good Bye",
+		action: _ => {
+			BCMacros.sendMessage("Good Bye");
+		},
+		key: "KeyB"
+	});
+	cpMacros.createMacro({
+		name: "Ok",
+		action: _ => {
+			BCMacros.sendMessage("OK");
+		},
+		key: "KeyO"
+	});
+	cpMacros.createMacro({
+		name: "Yes",
+		action: _ => {
+			BCMacros.sendMessage("Yes");
+		},
+		key: "KeyY"
+	});
+	cpMacros.createMacro({
+		name: "No",
+		action: _ => {
+			BCMacros.sendMessage("No");
+		},
+		key: "KeyN"
+	});
+
+	let emotes = {
+		laugh: { name: "Laughing face", key: "Digit1" },
+		smile: { name: "Smiley", key: "Digit2" },
+		happy: { name: "Straight face", key: "Digit3" },
+		sad: { name: "Frown", key: "Digit4" },
+		awe: { name: "Surprise", key: "Digit5" },
+		cheeky: { name: "Sticking out tongue", key: "Digit6" },
+		thumbs_up: { name: "Wink", key: "Digit7" },
+		sick: { name: "Green sickly face", key: "Digit8" },
+		angry: { name: "Red angry face", key: "Digit9" },
+		upset: { name: "Sad face", key: "Digit0" },
+		daze: { name: "Crooked face", key: "KeyU" },
+		coffee: { name: "Coffee Cup", key: "KeyC" },
+		gg: { name: "Game", key: "KeyG" },
+		// laugh: {name: "Popcorn", key: "KeyO"},
+		// laugh: {name: "Pizza", key: "KeyZ"},
+		// laugh: {name: "Ice Cream", key: "KeyQ"},
+		// laugh: {name: "Cake", key: "KeyK"},
+		// laugh: {name: "Good Luck", key: "KeyL"},
+		idea: { name: "Light Bulb", key: "KeyB" },
+		// laugh: {name: "Heart", key: "KeyH"},
+		// laugh: {name: "Flower", key: "KeyF"}
 	};
+
+	cpMacros.createMacro({
+		name: "Emote Chord",
+		action: null,
+		key: "KeyE"
+	});
+
+	for (const emote in emotes) {
+		let { name, key } = emotes[emote];
+
+		cpMacros.createMacro({
+			name,
+			action: _ => {
+				if (BCMacros.isChording(["emoteChord"])) {
+					world.emote(emote);
+				}
+			},
+			key
+		});
+	}
+
+	cpMacros.createMacro({
+		name: "Punctuation Chord",
+		action: null,
+		key: "ShiftLeft"
+	});
+
+	cpMacros.createMacro({
+		name: "Punctuation Chord2",
+		action: null,
+		key: "ShiftRight"
+	});
+
+	cpMacros.createMacro({
+		name: "Exclamation Point",
+		action: _ => {
+			if (BCMacros.isChording(["punctuationChord"]) || BCMacros.isChording(["punctuationChord2"])) {
+				BCMacros.sendMessage("!");
+			}
+		},
+		key: "Digit1"
+	});
+	cpMacros.createMacro({
+		name: "Question Mark",
+		action: _ => {
+			if (BCMacros.isChording(["punctuationChord"]) || BCMacros.isChording(["punctuationChord2"])) {
+				world.emote("confused");
+			}
+		},
+		key: "Slash"
+	});
+	//}
 
 	//-------------------------------------------------------------------------------------------------------------------------
 
