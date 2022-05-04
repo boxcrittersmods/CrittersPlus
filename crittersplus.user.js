@@ -2,9 +2,9 @@
 // @name         Critters+
 // @namespace    https://boxcrittersmods.ga/authors/slaggo/
 // @supportURL   http://discord.gg/D2ZpRUW
-// @version      2.4.1.157
+// @version      2.4.2.158
 // @description  Adds new features to BoxCritters to improve your experience!
-// @author       slaggo,TumbleGamer
+// @author       slaggo,Tumble
 // @require      https://github.com/tumble1999/mod-utils/raw/master/mod-utils.js
 // @require      https://github.com/tumble1999/modial/raw/master/modial.js
 // @require      https://github.com/SArpnt/ctrl-panel/raw/master/script.user.js
@@ -29,10 +29,9 @@
 	const uWindow = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
 
 	const CrittersPlus = new TumbleMod({
-		id: "CrittersPlus",
+		id: "critters-plus",
 		name: "Critters+",
 		abriv: "CP",
-		author: "Slaggo and TumbleGamer"
 	});
 
 	uWindow.CrittersPlus = CrittersPlus;
