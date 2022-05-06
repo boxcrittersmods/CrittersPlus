@@ -2,7 +2,7 @@
 // @name         Critters+
 // @namespace    https://boxcrittersmods.ga/authors/slaggo/
 // @supportURL   http://discord.gg/D2ZpRUW
-// @version      2.5.1.160
+// @version      2.5.2.161
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo, Tumble
 // @require      https://github.com/tumble1999/mod-utils/raw/master/mod-utils.js
@@ -271,14 +271,6 @@
 		sBalloon, sNames, sNavMesh, sTreasure;
 
 	cardboard.on("worldStageCreated", world => {
-
-		cpSettings.createInput({
-			name: "Mute Game", type: "checkbox", value: createjs.Sound.muted, onInput: value => {
-				createjs.Sound.muted = value;
-			}
-		});
-
-
 
 		sBalloon = cpSettings.createInput({
 			name: "Chat Balloons", type: "checkbox", value: true, onInput: value => {
