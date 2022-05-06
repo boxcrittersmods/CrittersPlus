@@ -2,7 +2,7 @@
 // @name         Critters+
 // @namespace    https://boxcrittersmods.ga/authors/slaggo/
 // @supportURL   http://discord.gg/D2ZpRUW
-// @version      2.5.0.159
+// @version      2.5.1.160
 // @description  Adds new features to BoxCritters to improve your experience!
 // @author       slaggo, Tumble
 // @require      https://github.com/tumble1999/mod-utils/raw/master/mod-utils.js
@@ -267,28 +267,38 @@
 	if (redeemallitemsBtn) {
 		redeemallitemsBtn.addEventListener("click", redeemallitems, false);
 	}*/
-	let cpSettings = Critterguration.registerSettingsMenu({ id: "crittersPlus", name: "Layer Visibility" });
+	let cpSettings = Critterguration.registerSettingsMenu({ id: "crittersPlus", name: "Layer Visibility" }),
+		sBalloon, sNames, sNavMesh, sTreasure;
 
-	cardboard.on("joinRoom", world => {
+	cardboard.on("worldStageCreated", world => {
+
 		cpSettings.createInput({
-			name: "Chat Balloons", type: "checkbox", value: world.stage.room.balloons.visible, onInput: value => {
+			name: "Mute Game", type: "checkbox", value: createjs.Sound.muted, onInput: value => {
+				createjs.Sound.muted = value;
+			}
+		});
+
+
+
+		sBalloon = cpSettings.createInput({
+			name: "Chat Balloons", type: "checkbox", value: true, onInput: value => {
 				world.stage.room.balloons.visible = value;
 			}
 		});
-		cpSettings.createInput({
-			name: "Name Tags", type: "checkbox", value: world.stage.room.nicknames.visible, onInput: value => {
+		sNames = cpSettings.createInput({
+			name: "Name Tags", type: "checkbox", value: true, onInput: value => {
 				world.stage.room.nicknames.visible = value;
 			}
 		});
 
-		cpSettings.createInput({
-			name: "Nav Mesh", type: "checkbox", value: world.stage.room.navMesh.visible, onInput: value => {
+		sNavMesh = cpSettings.createInput({
+			name: "Nav Mesh", type: "checkbox", onInput: value => {
 				world.stage.room.navMesh.visible = value;
 			}
 		});
 
-		cpSettings.createInput({
-			name: "Treasure", type: "checkbox", value: world.stage.room.treasure.visible, onInput: value => {
+		sTreasure = cpSettings.createInput({
+			name: "Treasure", type: "checkbox", onInput: value => {
 				world.stage.room.treasure.visible = value;
 			}
 		});
@@ -298,6 +308,13 @@
 				createjs.Sound.muted = value;
 			}
 		});
+	});
+
+	cardboard.on("joinRoom", world => {
+		world.stage.room.balloons.visible = sBalloon.checked;
+		world.stage.room.nicknames.visible = sNames.checked;
+		world.stage.room.navMesh.visible = sNavMesh.checked;
+		world.stage.room.treasure.visible = sTreasure.checked;
 	});
 
 
