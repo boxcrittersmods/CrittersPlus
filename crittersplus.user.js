@@ -2,14 +2,17 @@
 // @name         Critters+
 // @namespace    https://boxcrittersmods.ga/authors/slaggo/
 // @supportURL   http://discord.gg/D2ZpRUW
-// @version      2.4.2.158
+// @version      2.5.0.159
 // @description  Adds new features to BoxCritters to improve your experience!
-// @author       slaggo,Tumble
+// @author       slaggo, Tumble
 // @require      https://github.com/tumble1999/mod-utils/raw/master/mod-utils.js
 // @require      https://github.com/tumble1999/modial/raw/master/modial.js
 // @require      https://github.com/SArpnt/ctrl-panel/raw/master/script.user.js
 // @require      https://github.com/tumble1999/critterguration/raw/master/critterguration.user.js
 // @require      https://github.com/boxcrittersmods/bcmacros/raw/master/bcmacro-api.user.js
+// @require      https://github.com/SArpnt/joinFunction/raw/master/script.js
+// @require      https://github.com/SArpnt/EventHandler/raw/master/script.js
+// @require      https://github.com/SArpnt/cardboard/raw/master/script.user.js
 // @grant        GM_getValue
 // @grant        GM_setValue
 // @grant        GM_deleteValue
@@ -29,9 +32,10 @@
 	const uWindow = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
 
 	const CrittersPlus = new TumbleMod({
-		id: "critters-plus",
+		id: "crittersPus",
 		name: "Critters+",
 		abriv: "CP",
+		cardboard: true
 	});
 
 	uWindow.CrittersPlus = CrittersPlus;
@@ -97,48 +101,16 @@
 	CrittersPlus.sendJoke = sendJoke;
 	CrittersPlus.sendClap = sendClap;
 
-	// if (typeof BCMacros == "undefined") {
-	// 	let modal = new Modial();
-	// 	modal.setContent({
-	// 		header: `Macro Info`,
-	// 		body: `The Macros API has grown apart from Critters plus to become its own API only CrittersPlus.
-	// 	Please click the link below to install. <strong>Make sure to uninstall Critters+ and reinstall after you have installed the macro API as this will cause problems when installed out of order.</strong>`,
-	// 		footer: `<a class="btn btn-primary" href="https://bcmc.ga/mods/bcmacro-api/">Install Macro API</a>`
-	// 	});
-	// 	modal.show();
-	// } else {
-	CrittersPlus.log("Setting up macros...");
 	let cpMacros = BCMacros.CreateMacroPack({
 		name: "Critters Plus"
 	});
+
 	cpMacros.createMacro({
 		name: "Joke",
 		action: CrittersPlus.sendJoke,
 		button: {
 			color: "warning"
 		}
-	});
-	cpMacros.createMacro({
-		name: "Chat Balloons",
-		action: _ => {
-			world.stage.room.balloons.visible ^= true;
-		},
-		button: {}
-	});
-	cpMacros.createMacro({
-		name: "NameTags",
-		action: _ => {
-			world.stage.room.nicknames.visible ^= true;
-		},
-		button: {}
-	});
-
-	cpMacros.createMacro({
-		name: "freeitem",
-		action: _ => {
-			BCMacros.sendMessage("/freeitem");
-		},
-		button: {}
 	});
 
 	cpMacros.createMacro({
@@ -154,30 +126,6 @@
 		name: "darkmode",
 		action: _ => {
 			BCMacros.sendMessage("/darkmode");
-		},
-		button: {}
-	});
-
-	cpMacros.createMacro({
-		name: "NavMesh",
-		action: _ => {
-			BCMacros.sendMessage("/navmesh");
-		},
-		button: {}
-	});
-
-	cpMacros.createMacro({
-		name: "Treasure",
-		action: _ => {
-			BCMacros.sendMessage("/treasure");
-		},
-		button: {}
-	});
-
-	cpMacros.createMacro({
-		name: "Mute Game",
-		action: _ => {
-			createjs.Sound.muted ^= true;
 		},
 		button: {}
 	});
@@ -319,5 +267,39 @@
 	if (redeemallitemsBtn) {
 		redeemallitemsBtn.addEventListener("click", redeemallitems, false);
 	}*/
+	let cpSettings = Critterguration.registerSettingsMenu({ id: "crittersPlus", name: "Layer Visibility" });
+
+	cardboard.on("joinRoom", world => {
+		cpSettings.createInput({
+			name: "Chat Balloons", type: "checkbox", value: world.stage.room.balloons.visible, onInput: value => {
+				world.stage.room.balloons.visible = value;
+			}
+		});
+		cpSettings.createInput({
+			name: "Name Tags", type: "checkbox", value: world.stage.room.nicknames.visible, onInput: value => {
+				world.stage.room.nicknames.visible = value;
+			}
+		});
+
+		cpSettings.createInput({
+			name: "Nav Mesh", type: "checkbox", value: world.stage.room.navMesh.visible, onInput: value => {
+				world.stage.room.navMesh.visible = value;
+			}
+		});
+
+		cpSettings.createInput({
+			name: "Treasure", type: "checkbox", value: world.stage.room.treasure.visible, onInput: value => {
+				world.stage.room.treasure.visible = value;
+			}
+		});
+
+		cpSettings.createInput({
+			name: "Mute Game", type: "checkbox", value: createjs.Sound.muted, onInput: value => {
+				createjs.Sound.muted = value;
+			}
+		});
+	});
+
+
 
 })();
